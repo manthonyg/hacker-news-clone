@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const NavList = styled.ul`
   list-style: none;
@@ -32,9 +33,12 @@ function Nav() {
     <NavContainer>
       <NavButton />
       <NavList>
-        <NavItem>Top</NavItem>
-
-        <NavItem>New</NavItem>
+        <NavItem>
+          <Link to="/">Top</Link>
+        </NavItem>
+        <NavItem>
+          <Link to="/new">New</Link>
+        </NavItem>
       </NavList>
     </NavContainer>
   );

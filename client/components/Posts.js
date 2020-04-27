@@ -1,20 +1,47 @@
+/* eslint-disable no-console */
 import React from 'react';
-import styled from 'styled-components';
+import propTypes from 'prop-types';
+import PostList from './PostList';
+import { fetchMainPosts } from '../utils/api';
+import Loader from './common/Loader';
+import Flex from './common/Flex';
 
-function Posts({ list }) {
-  return (
-    <>
-      <h1>Posts</h1>
-      <ul>
-        <li>
-          <p>Post about something! </p>
-          <pre>
-            By some guy here <a>Link to the user</a>
-          </pre>
-        </li>
-      </ul>
-    </>
-  );
+export default class Posts extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = { isLoading: false, posts: [] };
+    this.handleFetch = this.handleFetch.bind(this);
+  }
+
+  componentDidMount() {
+    this.setState({ isLoading: true });
+    this.handleFetch();
+  }
+
+  componentDidUpdate(previousProps) {
+    if (previousProps.type !== this.props.type) {
+      this.handleFetch();
+    }
+  }
+
+  handleFetch() {
+    this.setState({ isLoading: true, posts: null });
+    fetchMainPosts(this.props.type).then(data => {
+      console.log(data);
+
+      this.setState({ posts: data, isLoading: false });
+    });
+  }
+
+  render() {
+    const { isLoading, posts } = this.state;
+    return (
+      <>
+        <Flex justifyCenter>{isLoading && <Loader />}</Flex>
+
+        <PostList posts={posts} />
+      </>
+    );
+  }
 }
-
-export default Posts;
