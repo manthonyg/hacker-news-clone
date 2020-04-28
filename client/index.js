@@ -4,7 +4,8 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import GoogleFontLoader from 'react-google-font-loader';
 import Nav from './components/Nav';
 import Posts from './components/Posts';
-// import UserInfo from './components/UserInfo';
+import UserInfo from './components/UserInfo';
+import SinglePost from './components/SinglePost';
 
 function App() {
   return (
@@ -25,6 +26,8 @@ function App() {
       <Nav />
       <Switch>
         <Route exact path="/" render={() => <Posts type="top" />} />
+        <Route path="/user" render={() => <UserInfo />} />
+        <Route path="/post" render={() => <SinglePost />} />
         <Route path="/new" render={() => <Posts type="new" />} />
         <Route render={() => <h1>404</h1>} />
       </Switch>

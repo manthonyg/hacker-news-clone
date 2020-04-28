@@ -14,6 +14,7 @@ export default class Posts extends React.Component {
 
     this.state = { isLoading: false, posts: [] };
     this.handleFetch = this.handleFetch.bind(this);
+    const { type } = this.props;
   }
 
   componentDidMount() {

@@ -45,8 +45,10 @@ function PostList({ posts }) {
                 <a href={post.url}>{post.title}</a>
               </Title>
               <MetaData>
-                by <Link to={`/user?id=${post.by}`}>{post.by}</Link> on
-                {moment.unix(post.time).format()} with 12 comments
+                by <Link to={`/user?=${post.by}`}>{post.by}</Link> on
+                {moment.unix(post.time).format()} with
+                <Link to={`/post?=${post.id}`}>{post.descendants}</Link>
+                comments
               </MetaData>
             </>
           );

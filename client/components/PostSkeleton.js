@@ -10,8 +10,9 @@ const loadingAnimation = keyframes`
 const Skeleton = styled.div`
   background: white;
   border-radius: 0.25rem;
-  width: 98vw;
+  width: 100vw;
   padding: 10px;
+  margin: 9px;
 `;
 const Loading = styled.div`
   position: relative;
@@ -39,9 +40,9 @@ const SkeletonInner = styled.div`
 `;
 
 function PostSkeleton({ numberOfSkeletons }) {
-  return [...Array(numberOfSkeletons)].map((item, i) => {
+  return [...Array(numberOfSkeletons)].map(() => {
     return (
-      <Skeleton key={Date.now() + i}>
+      <Skeleton>
         <Loading>
           <SkeletonInner />
         </Loading>
