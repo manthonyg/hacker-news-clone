@@ -5,6 +5,8 @@ import PostList from './PostList';
 import { fetchMainPosts } from '../utils/api';
 import Loader from './common/Loader';
 import Flex from './common/Flex';
+import '../index.css';
+import PostSkeleton from './PostSkeleton';
 
 export default class Posts extends React.Component {
   constructor(props) {
@@ -38,7 +40,13 @@ export default class Posts extends React.Component {
     const { isLoading, posts } = this.state;
     return (
       <>
-        <Flex justifyCenter>{isLoading && <Loader />}</Flex>
+        <Flex justifyCenter>
+          {isLoading && (
+            <>
+              <PostSkeleton numberOfSkeletons={20} />
+            </>
+          )}
+        </Flex>
 
         <PostList posts={posts} />
       </>
