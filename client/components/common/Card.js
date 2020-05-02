@@ -8,14 +8,23 @@ const animatedCss = css`
 `;
 
 const primaryCss = css`
-  background-color: #ccc;
-  color: #fff;
+  border: ${props => {
+    if (props.theme.theme === 'dark') return '2px solid #BB86FC';
+    return '2px solid #121212';
+  }};
+  background-color: ${props => {
+    if (props.theme.theme === 'dark') return '#121212';
+    return '#ffffff';
+  }};
+  color: ${props => {
+    if (props.theme.theme === 'dark') return '#BB86FC';
+    return '#121212';
+  }};
 `;
 
 const StyledCard = styled.div`
-  width: ${props => (props.big ? '450px' : '100vw')};
+  width: ${props => (props.big ? '450px' : '90vw')};
   padding: 15px;
-  text-align: center;
   opacity: 0;
   overflow: hidden;
   margin: ${props => (props.noMargin ? 0 : '5px')};
@@ -60,6 +69,7 @@ class Card extends React.Component {
         noAnimation={noAnimation}
         big={big}
         noMargin={noMargin}
+        // eslint-disable-next-line react/jsx-props-no-spreading
         {...props}
       />
     );

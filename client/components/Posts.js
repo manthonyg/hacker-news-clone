@@ -1,10 +1,7 @@
 /* eslint-disable no-console */
 import React from 'react';
-import propTypes from 'prop-types';
 import PostList from './PostList';
 import { fetchMainPosts } from '../utils/api';
-import Loader from './common/Loader';
-import Flex from './common/Flex';
 import '../index.css';
 import PostSkeleton from './PostSkeleton';
 
@@ -14,7 +11,6 @@ export default class Posts extends React.Component {
 
     this.state = { isLoading: false, posts: [] };
     this.handleFetch = this.handleFetch.bind(this);
-    const { type } = this.props;
   }
 
   componentDidMount() {
@@ -23,14 +19,16 @@ export default class Posts extends React.Component {
   }
 
   componentDidUpdate(previousProps) {
-    if (previousProps.type !== this.props.type) {
+    const { type } = this.props;
+    if (previousProps.type !== type) {
       this.handleFetch();
     }
   }
 
   handleFetch() {
+    const { type } = this.props;
     this.setState({ isLoading: true, posts: null });
-    fetchMainPosts(this.props.type).then(data => {
+    fetchMainPosts(type).then(data => {
       console.log(data);
 
       this.setState({ posts: data, isLoading: false });
@@ -41,15 +39,13 @@ export default class Posts extends React.Component {
     const { isLoading, posts } = this.state;
     return (
       <>
-        <Flex justifyCenter>
-          {isLoading && (
-            <>
-              <PostSkeleton numberOfSkeletons={20} />
-            </>
-          )}
-        </Flex>
+        {isLoading && (
+          <>
+            <PostSkeleton numberOfSkeletons={20} />
+          </>
+        )}
 
-        <PostList posts={posts} />
+        <PostList posts={posts} isLoading={isLoading} />
       </>
     );
   }

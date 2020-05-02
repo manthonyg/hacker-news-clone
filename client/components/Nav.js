@@ -17,7 +17,10 @@ const NavContainer = styled.div`
   postion: fixed;
   height: 8vh;
   width: 100%;
-  background-color: #eee;
+  background-color: ${props => {
+    if (props.theme.theme === 'light') return '#f1f1f1';
+    return '#121212';
+  }};
   margin: 0;
   padding: 0;
 `;
@@ -28,10 +31,12 @@ const NavButton = styled.button`
   height: 50px;
   float: right;
 `;
-function Nav() {
+function Nav({ onClick, theme }) {
   return (
     <NavContainer>
-      <NavButton />
+      <NavButton onClick={onClick}>
+        {theme.theme === 'light' ? '🌑' : '💡'}
+      </NavButton>
       <NavList>
         <NavItem>
           <Link to="/">Top</Link>

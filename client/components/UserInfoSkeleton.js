@@ -8,10 +8,12 @@ const loadingAnimation = keyframes`
 `;
 
 const Skeleton = styled.div`
-  background: white;
   border-radius: 0.25rem;
-  max-width: 600px;
-  margin: 9px;
+  max-width: 90vw;
+  padding: 15px;
+  height: 250px;
+  border-radius: 5px;
+  margin: 5px;
 `;
 const Loading = styled.div`
   position: relative;
@@ -42,11 +44,11 @@ const Loading = styled.div`
 `;
 
 const SkeletonInner = styled.div`
-  height: 60px;
+  height: 250px;
 `;
 
-function PostSkeleton({ numberOfSkeletons }) {
-  return [...Array(numberOfSkeletons)].map((skeleton, i) => {
+function UserInfoSkeleton({ numberOfSkeletons }) {
+  return [...Array(numberOfSkeletons)].map((skeleon, i) => {
     return (
       // eslint-disable-next-line react/no-array-index-key
       <Skeleton key={i}>
@@ -57,5 +59,4 @@ function PostSkeleton({ numberOfSkeletons }) {
     );
   });
 }
-
-export default PostSkeleton;
+export default UserInfoSkeleton;
