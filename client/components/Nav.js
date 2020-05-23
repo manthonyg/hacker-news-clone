@@ -19,7 +19,7 @@ const NavContainer = styled.div`
   width: 100%;
   background-color: ${props => {
     if (props.theme.theme === 'light') return '#f1f1f1';
-    return '#121212';
+    return '#212121';
   }};
   margin: 0;
   padding: 0;
@@ -27,6 +27,14 @@ const NavContainer = styled.div`
 
 const NavButton = styled.button`
   border: 2px solid #ccc;
+  background-color: ${props => {
+    if (props.theme.theme === 'light') return '#f1f1f1';
+    return '#121212';
+  }};
+  color: ${props => {
+    if (props.theme.theme === 'light') return '#121212';
+    return '#f1f1f1';
+  }};
   width: 50px;
   height: 50px;
   float: right;
@@ -35,7 +43,7 @@ function Nav({ onClick, theme }) {
   return (
     <NavContainer>
       <NavButton onClick={onClick}>
-        {theme.theme === 'light' ? '🌑' : '💡'}
+        {theme.theme === 'light' ? 'dark mode' : 'light mode'}
       </NavButton>
       <NavList>
         <NavItem>

@@ -13,11 +13,11 @@ const primaryCss = css`
     return '2px solid #121212';
   }};
   background-color: ${props => {
-    if (props.theme.theme === 'dark') return '#121212';
+    if (props.theme.theme === 'dark') return '#212121';
     return '#ffffff';
   }};
   color: ${props => {
-    if (props.theme.theme === 'dark') return '#BB86FC';
+    if (props.theme.theme === 'dark') return '#eeeeee';
     return '#121212';
   }};
 `;

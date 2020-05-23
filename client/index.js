@@ -6,14 +6,14 @@ import { ThemeProvider, createGlobalStyle } from 'styled-components';
 import Nav from './components/Nav';
 import Posts from './components/Posts';
 import UserInfo from './components/UserInfo';
-import SinglePost from './components/SinglePost';
+import PostDetails from './components/PostDetails';
 
 const GlobalStyle = createGlobalStyle`
   body {
     background-color: ${props =>
       props.theme.theme === 'light' ? 'white' : '#121212'};
       color: ${props =>
-        props.theme.theme === 'light' ? '#3700B3' : '#03DAC6'};
+        props.theme.theme === 'light' ? '#212121' : '#eeeeee'};
   }
   a {
     color: inherit;
@@ -52,7 +52,7 @@ function App() {
         <Switch>
           <Route exact path="/" render={() => <Posts type="top" />} />
           <Route path="/user" render={() => <UserInfo />} />
-          <Route path="/post" render={() => <SinglePost />} />
+          <Route path="/post" render={() => <PostDetails />} />
           <Route path="/new" render={() => <Posts type="new" />} />
           <Route render={() => <h1>404</h1>} />
         </Switch>

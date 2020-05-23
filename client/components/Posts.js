@@ -3,14 +3,22 @@ import React from 'react';
 import PostList from './PostList';
 import { fetchMainPosts } from '../utils/api';
 import '../index.css';
-import PostSkeleton from './PostSkeleton';
+import PostPagination from './PostPagination';
 
 export default class Posts extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { isLoading: false, posts: [] };
+    this.state = {
+      isLoading: false,
+      posts: [],
+      currentPage: 1,
+      postsPerPage: 10
+    };
     this.handleFetch = this.handleFetch.bind(this);
+    this.paginate = this.paginate.bind(this);
+    this.pageForward = this.pageForward.bind(this);
+    this.pageBack = this.pageBack.bind(this);
   }
 
   componentDidMount() {
@@ -35,17 +43,44 @@ export default class Posts extends React.Component {
     });
   }
 
+  paginate(pageNumber) {
+    this.setState({ currentPage: pageNumber });
+    console.log(this.state);
+  }
+
+  pageBack(pageNumber) {
+    this.setState({ currentPage: pageNumber === 1 ? 1 : pageNumber - 1 });
+  }
+
+  pageForward(pageNumber) {
+    this.setState({
+      currentPage: pageNumber < 5 ? pageNumber + 1 : pageNumber
+    });
+  }
+
   render() {
-    const { isLoading, posts } = this.state;
+    const { isLoading, posts, currentPage, postsPerPage } = this.state;
+    const indexOfLastPost = currentPage * postsPerPage;
+    const indexOfFirstPost = indexOfLastPost - postsPerPage;
+    const currentPosts =
+      posts && posts.slice(indexOfFirstPost, indexOfLastPost);
+
     return (
       <>
-        {isLoading && (
+        {posts && (
           <>
-            <PostSkeleton numberOfSkeletons={20} />
+            <PostList posts={currentPosts} isLoading={isLoading} />
+            <PostPagination
+              totalPosts={posts.length}
+              postsPerPage={postsPerPage}
+              currentPage={currentPage}
+              paginate={this.paginate}
+              pageForward={this.pageForward}
+              pageBack={this.pageBack}
+              loading={isLoading}
+            />
           </>
         )}
-
-        <PostList posts={posts} isLoading={isLoading} />
       </>
     );
   }

@@ -1,12 +1,15 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import styled, { css } from 'styled-components';
 
 const baseStyle = css`
   margin-bottom: ${props => props.noMargin && '0'};
-  color: #202020;
+  color: ${props => {
+    if (props.theme.theme === 'light') return '#202020';
+    return '#03DAC6';
+  }};
   font-family: 'Poppins', sans-serif;
   font-weight: 600;
-  margin-top: 0;
   text-align: ${props => {
     if (props.center) return 'center';
     if (props.right) return 'right';
@@ -48,7 +51,7 @@ const HeadingFour = styled.h4`
 `;
 
 const HeadingFive = styled.h5`
-  font-size: 18px;
+  font-size: 12px;
   font-weight: bold;
   margin-bottom: 5px;
   ${baseStyle};

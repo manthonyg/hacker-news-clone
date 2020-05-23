@@ -7,7 +7,8 @@ module.exports = {
 
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'index_bundle.js'
+    filename: 'index_bundle.js',
+    publicPath: '/'
   },
   module: {
     rules: [
@@ -16,6 +17,9 @@ module.exports = {
     ]
   },
   mode: 'development',
+  devServer: {
+    historyApiFallback: true
+  },
   plugins: [
     // strips all locales except en
     new MomentLocalesPlugin(),

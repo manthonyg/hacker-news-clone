@@ -4,11 +4,15 @@ import { Link } from 'react-router-dom';
 import moment from 'moment';
 import PostSkeleton from './PostSkeleton';
 
+const StyledLink = styled(Link)`
+  text-decoration: underline;
+  color: #bb86fc;
+  font-weight: 800;
+`;
 const List = styled.ol`
   list-style: none;
   counter-reset: item;
   margin-bottom: 20px;
-  max-width: 600px;
 `;
 
 const ListTitle = styled.span`
@@ -24,10 +28,10 @@ const ListItem = styled.li`
 
   &: before {
     content: '${props => {
-      if (props.link) return '🔗';
-      if (props.comments > 50) return '🔥';
-      if (props.link && props.comments > 20) return '🔗🔥';
-      if (props.comments === 0) return '🧊';
+      if (props.link && props.comments > 40) return '🔗🔥';
+      if (props.comments > 30) return '🔥';
+      if (props.comments === 1) return '🧊';
+      if (props.comments > 10) return '👶';
       return '';
     }}';
     counter-increment: item;
@@ -44,7 +48,11 @@ const ListItem = styled.li`
     text-indent: 0;
   }
   &: hover {
-    background-color: #ffc;
+   background-color: ${props => {
+     if (props.theme.theme === 'light') return '#ffc';
+     return '#212121';
+   }};
+
   }
 `;
 
@@ -52,7 +60,7 @@ function PostList({ posts, isLoading }) {
   return (
     <>
       {isLoading ? (
-        <PostSkeleton numberOfSkeletons={10} />
+        <PostSkeleton numberOfSkeletons={12} />
       ) : (
         <List>
           {posts &&
@@ -69,13 +77,15 @@ function PostList({ posts, isLoading }) {
                     </ListTitle>
                     <br />
                     <span>
-                      <Link to={`/user?id=${post.by}`}>by {post.by}</Link>
-                      at {moment.unix(post.time).format('YYYY-MM-DD')}
+                      <StyledLink to={`/user?id=${post.by}`}>
+                        by {post.by}
+                      </StyledLink>{' '}
+                      on {moment.unix(post.time).format('YYYY-MM-DD')}{' '}
                     </span>
 
-                    <Link to={`/post?id=${post.id}`}>
-                      {post.descendants} comments
-                    </Link>
+                    <StyledLink to={`/post?id=${post.id}`}>
+                      comments {post.descendants}
+                    </StyledLink>
                   </ListItem>
                 </>
               );
