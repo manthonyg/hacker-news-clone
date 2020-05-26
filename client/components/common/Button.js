@@ -29,7 +29,7 @@ const StyledButton = styled.button`
   white-space: nowrap;
   background-color: transparent;
   border-radius: 4px;
-  border: 1px solid #232323;
+  border: none;
   cursor: pointer;
   box-sizing: border-box;
   ${props => {

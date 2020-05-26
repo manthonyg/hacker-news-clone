@@ -23,10 +23,9 @@ const primaryCss = css`
 `;
 
 const StyledCard = styled.div`
-  width: ${props => (props.big ? '450px' : '90vw')};
+  width: ${props => (props.big ? '450px' : '80vw')};
   padding: 15px;
   opacity: 0;
-  overflow: hidden;
   margin: ${props => (props.noMargin ? 0 : '5px')};
   border-radius: 5px;
   ${props => props.animated && animatedCss}

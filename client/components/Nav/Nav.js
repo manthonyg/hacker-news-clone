@@ -15,7 +15,7 @@ const NavItem = styled.li`
 
 const NavContainer = styled.div`
   postion: fixed;
-  height: 8vh;
+  height: 10vh;
   width: 100%;
   background-color: ${props => {
     if (props.theme.theme === 'light') return '#f1f1f1';

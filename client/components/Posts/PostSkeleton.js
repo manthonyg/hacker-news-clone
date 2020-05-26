@@ -24,10 +24,9 @@ const withEmoji = css`
 const Skeleton = styled.div`
   display: flex;
   padding-left: 100px;
-  justify-content: center;
-  text-align: center;
+
   border-radius: 0.25rem;
-  width: 600px;
+  width: 50vw;
   margin: 9px 0px;
 `;
 
@@ -41,23 +40,7 @@ const SkeletonContent = styled.span`
     if (props.theme.theme === 'light') return '#eeeeee';
     return '#212121';
   }};
-  &:nth-child(1):after {
-    ${props => (props.noEmoji ? '' : withEmoji)}
-  }
-  &:nth-child(2) {
-    height: 10px;
-    top: 40px;
-  }
-`;
-
-const Loading = styled.div`
-  position: relative;
-  width: 100%;
-
   &::after {
-    display: block;
-    content: '';
-    top: 0;
     width: 50%;
     position: absolute;
     height: 100%;
@@ -73,10 +56,22 @@ const Loading = styled.div`
     );
     animation: ${loadingAnimation} 1s infinite;
   }
+  &:nth-child(1):before {
+    ${props => (props.noEmoji ? '' : withEmoji)}
+  }
+  &:nth-child(2) {
+    height: 10px;
+    top: 40px;
+  }
+`;
+
+const Loading = styled.div`
+  position: relative;
+  width: 100%;
 `;
 
 const SkeletonInner = styled.div`
-  height: 60px;
+  height: 70px;
 `;
 
 function PostSkeleton({ numberOfSkeletons, noEmoji }) {

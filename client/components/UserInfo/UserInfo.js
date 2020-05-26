@@ -1,21 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import queryString from 'query-string';
 import moment from 'moment';
-import { fetchUser, fetchPosts } from '../utils/api';
-import PostList from './PostList';
-import Card from './common/Card';
+import { fetchUser, fetchPosts } from '../../utils/api';
+import PostList from '../PostList/PostList';
+import Card from '../common/Card';
 import UserInfoSkeleton from './UserInfoSkeleton';
-import PostsSkeleton from './PostSkeleton';
+import PostsSkeleton from '../Posts/PostSkeleton';
 
 function UserInfo() {
   // eslint-disable-next-line no-restricted-globals
   const { id } = queryString.parse(location.search);
-  // flow contol
+
   const [user, setUser] = useState(null);
   const [posts, setPosts] = useState([]);
-  // error control
+
   const [errorMessage, setErrorMessage] = useState(null);
-  // Loading state
+
   const [postsLoading, setPostsLoading] = useState(true);
   const [userLoading, setUserLoading] = useState(true);
 
@@ -64,6 +64,3 @@ function UserInfo() {
 }
 
 export default UserInfo;
-
-/* TODO: make this into a class component use this.props.search and query
-string to parse the search and use in the component */

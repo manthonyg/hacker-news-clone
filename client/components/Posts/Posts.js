@@ -1,9 +1,10 @@
 /* eslint-disable no-console */
-import React from 'react';
-import PostList from './PostList';
-import { fetchMainPosts } from '../utils/api';
-import '../index.css';
-import PostPagination from './PostPagination';
+import React, { Suspense } from 'react';
+import PostList from '../PostList/PostList';
+import { fetchMainPosts } from '../../utils/api';
+import PostPagination from '../PostPagination/PostPagination';
+import PostPaginationSkeleton from '../PostPagination/PostPaginationSkeleton';
+import PostSkeleton from './PostSkeleton';
 
 export default class Posts extends React.Component {
   constructor(props) {
@@ -37,8 +38,6 @@ export default class Posts extends React.Component {
     const { type } = this.props;
     this.setState({ isLoading: true, posts: null });
     fetchMainPosts(type).then(data => {
-      console.log(data);
-
       this.setState({ posts: data, isLoading: false });
     });
   }
@@ -67,9 +66,15 @@ export default class Posts extends React.Component {
 
     return (
       <>
-        {posts && (
+        {isLoading ? (
+          <>
+            <PostSkeleton numberOfSkeletons={10} />
+            <PostPaginationSkeleton numberOfSkeletons={1} />
+          </>
+        ) : (
           <>
             <PostList posts={currentPosts} isLoading={isLoading} />
+
             <PostPagination
               totalPosts={posts.length}
               postsPerPage={postsPerPage}

@@ -4,12 +4,12 @@ import queryString from 'query-string';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { fetchComments, fetchItem } from '../utils/api';
-import Comment from './Comment';
-import Flex from './common/Flex';
-import UserInfoSkeleton from './UserInfoSkeleton';
-import Heading from './common/Heading';
-import PostSkeleton from './PostSkeleton';
+import { fetchComments, fetchItem } from '../../utils/api';
+import Comment from '../Comments/Comment';
+import Flex from '../common/Flex';
+import UserInfoSkeleton from '../UserInfo/UserInfoSkeleton';
+import Heading from '../common/Heading';
+import PostSkeleton from '../Posts/PostSkeleton';
 
 const StyledLink = styled(Link)`
   text-decoration: underline;

@@ -3,10 +3,10 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import GoogleFontLoader from 'react-google-font-loader';
 import { ThemeProvider, createGlobalStyle } from 'styled-components';
-import Nav from './components/Nav';
-import Posts from './components/Posts';
-import UserInfo from './components/UserInfo';
-import PostDetails from './components/PostDetails';
+import Nav from './components/Nav/Nav';
+import Posts from './components/Posts/Posts';
+import UserInfo from './components/UserInfo/UserInfo';
+import PostDetails from './components/PostDetails/PostDetails';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -14,6 +14,7 @@ const GlobalStyle = createGlobalStyle`
       props.theme.theme === 'light' ? 'white' : '#121212'};
       color: ${props =>
         props.theme.theme === 'light' ? '#212121' : '#eeeeee'};
+        font-family: 'Roboto', sans-serif;
   }
   a {
     color: inherit;

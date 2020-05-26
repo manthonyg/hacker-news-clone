@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
-import PostSkeleton from './PostSkeleton';
+import PostSkeleton from '../Posts/PostSkeleton';
 
 const StyledLink = styled(Link)`
   text-decoration: underline;
@@ -24,7 +24,7 @@ const ListItem = styled.li`
   margin: 2em;
   padding-left: 25px;
   position: relative;
-  margin-bottom: 10px;
+  margin-bottom: 1em;
 
   &: before {
     content: '${props => {
@@ -56,42 +56,38 @@ const ListItem = styled.li`
   }
 `;
 
-function PostList({ posts, isLoading }) {
+function PostList({ posts }) {
   return (
     <>
-      {isLoading ? (
-        <PostSkeleton numberOfSkeletons={12} />
-      ) : (
-        <List>
-          {posts &&
-            !!posts.length &&
-            posts.map(post => {
-              return (
-                <>
-                  <ListItem
-                    comments={post && post.kids && post.kids.length}
-                    link={post.url}
-                  >
-                    <ListTitle>
-                      <a href={post.url}>{post.title}</a>
-                    </ListTitle>
-                    <br />
-                    <span>
-                      <StyledLink to={`/user?id=${post.by}`}>
-                        by {post.by}
-                      </StyledLink>{' '}
-                      on {moment.unix(post.time).format('YYYY-MM-DD')}{' '}
-                    </span>
+      <List>
+        {posts &&
+          !!posts.length &&
+          posts.map(post => {
+            return (
+              <Suspense fallback={<PostSkeleton numberOfSkeletons={1} />}>
+                <ListItem
+                  comments={post && post.kids && post.kids.length}
+                  link={post.url}
+                >
+                  <ListTitle>
+                    <a href={post.url}>{post.title}</a>
+                  </ListTitle>
+                  <br />
+                  <span>
+                    <StyledLink to={`/user?id=${post.by}`}>
+                      by {post.by}
+                    </StyledLink>{' '}
+                    on {moment.unix(post.time).format('YYYY-MM-DD')}{' '}
+                  </span>
 
-                    <StyledLink to={`/post?id=${post.id}`}>
-                      comments {post.descendants}
-                    </StyledLink>
-                  </ListItem>
-                </>
-              );
-            })}
-        </List>
-      )}
+                  <StyledLink to={`/post?id=${post.id}`}>
+                    comments {post.descendants}
+                  </StyledLink>
+                </ListItem>
+              </Suspense>
+            );
+          })}
+      </List>
     </>
   );
 }

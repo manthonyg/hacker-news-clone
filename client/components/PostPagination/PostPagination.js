@@ -1,8 +1,8 @@
 /* eslint-disable react/prefer-stateless-function */
 /* eslint-disable no-plusplus */
 import React from 'react';
-import Button from './common/Button';
-import Flex from './common/Flex';
+import Button from '../common/Button';
+import Flex from '../common/Flex';
 
 class PostPagination extends React.Component {
   render() {
