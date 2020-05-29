@@ -1,11 +1,5 @@
 import React from 'react';
-import styled, { keyframes, css } from 'styled-components';
-
-const loadingAnimation = keyframes`
-100% {
-    transform: translateX(100%);
-}
-`;
+import styled from 'styled-components';
 
 const SkeletonContainer = styled.div`
   display: flex;
@@ -23,6 +17,7 @@ const SkeletonButton = styled.button`
   }};
   text-align: center;
   font-size: 11px;
+  margin: 2px;
   font-weight: 600;
   line-height: 38px;
   letter-spacing: 0.1rem;

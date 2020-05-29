@@ -6,7 +6,7 @@ const baseStyle = css`
   margin-bottom: ${props => props.noMargin && '0'};
   color: ${props => {
     if (props.theme.theme === 'light') return '#202020';
-    return '#03DAC6';
+    return '03DAC6#';
   }};
   font-family: 'Poppins', sans-serif;
   font-weight: 600;

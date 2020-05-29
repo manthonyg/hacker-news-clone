@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-unresolved
 import React from 'react';
 import styled, { css } from 'styled-components';
-import Loader from './Loader';
+import Loader from '../Loader';
 
 const disabledButtonCss = css`
   background-color: ${props => {

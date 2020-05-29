@@ -11,7 +11,6 @@ const withEmoji = css`
   content: '';
   position: absolute;
   border-radius: 100%;
-  top: 0px;
   left: -25px;
   width: 20px;
   height: 20px;
@@ -24,23 +23,21 @@ const withEmoji = css`
 const Skeleton = styled.div`
   display: flex;
   padding-left: 100px;
-
-  border-radius: 0.25rem;
   width: 50vw;
-  margin: 9px 0px;
+  margin: 5.5px 0px;
 `;
 
 const SkeletonContent = styled.span`
   height: 25px;
   position: absolute;
   top: 10px;
-  left: 0px;
   width: 100%;
   background-color: ${props => {
     if (props.theme.theme === 'light') return '#eeeeee';
     return '#212121';
   }};
   &::after {
+    content: '';
     width: 50%;
     position: absolute;
     height: 100%;
@@ -71,7 +68,7 @@ const Loading = styled.div`
 `;
 
 const SkeletonInner = styled.div`
-  height: 70px;
+  height: 60px;
 `;
 
 function PostSkeleton({ numberOfSkeletons, noEmoji }) {

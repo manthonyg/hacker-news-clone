@@ -16,7 +16,10 @@ const StyledDotsLoader = styled.div`
 const Dot = styled.span`
   display: inline-block;
   width: 1em;
-  background-color: #000;
+  background-color: ${props => {
+    if (props.theme.theme === 'light') return '#03DAC6';
+    return '#202020';
+  }};
   height: 1em;
   border-radius: 100%;
   animation: ${Bounce} 1s infinite ease-in-out both;
