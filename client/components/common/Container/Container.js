@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 const Container = styled.div`
-  font-family: 'Press Start 2P', cursive;
   font-size: 0.5rem;
   padding-left: ${props => {
     if (props.full) return 0;

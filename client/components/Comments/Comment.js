@@ -3,8 +3,8 @@ import React from 'react';
 import moment from 'moment';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import Card from '../common/Card';
-import Heading from '../common/Heading';
+import Card from '../common/Card/Card';
+import Heading from '../common/Heading/Heading';
 
 const StyledLink = styled(Link)`
   text-decoration: underline;

@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, { keyframes, css } from 'styled-components';
+import Container from '../common/Container/Container';
 
 const loadingAnimation = keyframes`
 100% {
@@ -22,15 +23,14 @@ const withEmoji = css`
 
 const Skeleton = styled.div`
   display: flex;
-  padding-left: 100px;
+  padding-left: 80px;
   width: 50vw;
-  margin: 5.5px 0px;
 `;
 
 const SkeletonContent = styled.span`
-  height: 25px;
+  height: 13px;
   position: absolute;
-  top: 10px;
+  top: 8px;
   width: 100%;
   background-color: ${props => {
     if (props.theme.theme === 'light') return '#eeeeee';
@@ -39,6 +39,7 @@ const SkeletonContent = styled.span`
   &::after {
     content: '';
     width: 50%;
+    filter: blur(10px);
     position: absolute;
     height: 100%;
     transform: translateX(-100%);
@@ -57,8 +58,8 @@ const SkeletonContent = styled.span`
     ${props => (props.noEmoji ? '' : withEmoji)}
   }
   &:nth-child(2) {
-    height: 10px;
-    top: 40px;
+    height: 8px;
+    top: 28px;
   }
 `;
 
@@ -68,22 +69,25 @@ const Loading = styled.div`
 `;
 
 const SkeletonInner = styled.div`
-  height: 60px;
+  height: 40px;
 `;
 
 function PostSkeleton({ numberOfSkeletons, noEmoji }) {
-  return [...Array(numberOfSkeletons)].map((skeleton, i) => {
-    return (
-      // eslint-disable-next-line react/no-array-index-key
-      <Skeleton key={i}>
-        <Loading>
-          <SkeletonContent noEmoji={noEmoji} />
-          <SkeletonContent />
-          <SkeletonInner />
-        </Loading>
-      </Skeleton>
-    );
-  });
+  return (
+    <Container>
+      {[...Array(numberOfSkeletons)].map((skeleton, i) => (
+        // eslint-disable-next-line react/no-array-index-key
+
+        <Skeleton key={i}>
+          <Loading>
+            <SkeletonContent noEmoji={noEmoji} />
+            <SkeletonContent />
+            <SkeletonInner />
+          </Loading>
+        </Skeleton>
+      ))}
+    </Container>
+  );
 }
 
 export default PostSkeleton;

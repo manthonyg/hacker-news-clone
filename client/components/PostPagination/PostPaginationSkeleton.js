@@ -4,13 +4,13 @@ import styled from 'styled-components';
 const SkeletonContainer = styled.div`
   display: flex;
   justify-content: center;
+  flex-wrap: no-wrap;
 `;
 
 const SkeletonButton = styled.button`
-  display: inline-block;
+  display: flex;
   height: 38px;
-  width: 9%;
-  padding: 2px 30px;
+  padding: 2px 20px;
   background-color: ${props => {
     if (props.theme.theme === 'light') return '#eeeeee';
     return '#212121';
@@ -23,7 +23,6 @@ const SkeletonButton = styled.button`
   letter-spacing: 0.1rem;
   text-transform: uppercase;
   text-decoration: none;
-  white-space: nowrap;
   border-radius: 4px;
   border: none;
   cursor: pointer;

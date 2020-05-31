@@ -10,7 +10,7 @@ export default {
 const options = ['light', 'dark'];
 const defaultValue = 'light';
 
-export const Text = () => (
+export const buttonWithKnobs = () => (
   <Button
     disabled={boolean('disabled')}
     loading={boolean('loading')}

@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import React, { Suspense } from 'react';
+import React from 'react';
 import PostList from '../PostList/PostList';
 import { fetchMainPosts } from '../../utils/api';
 import PostPagination from '../PostPagination/PostPagination';

@@ -3,7 +3,7 @@ import queryString from 'query-string';
 import moment from 'moment';
 import { fetchUser, fetchPosts } from '../../utils/api';
 import PostList from '../PostList/PostList';
-import Card from '../common/Card';
+import Card from '../common/Card/Card';
 import UserInfoSkeleton from './UserInfoSkeleton';
 import PostsSkeleton from '../Posts/PostSkeleton';
 

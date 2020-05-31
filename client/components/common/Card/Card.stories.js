@@ -10,7 +10,7 @@ export default {
 const options = ['light', 'dark'];
 const defaultValue = 'light';
 
-export const Text = () => (
+export const cardWithKnobs = () => (
   <Card primary theme={{ theme: select('Mode', options, defaultValue) }}>
     Card Text
   </Card>

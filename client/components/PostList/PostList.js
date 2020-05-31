@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 import PostSkeleton from '../Posts/PostSkeleton';
+import Container from '../common/Container/Container';
 
 const StyledLink = styled(Link)`
   text-decoration: underline;
@@ -28,7 +29,7 @@ const ListItem = styled.li`
 
   &: before {
     content: '${props => {
-      if (props.link && props.comments > 40) return '🔗🔥';
+      if (props.link && props.comments > 40) return '🔥';
       if (props.comments > 30) return '🔥';
       if (props.comments === 1) return '🧊';
       if (props.comments > 10) return '👶';
@@ -57,8 +58,18 @@ const ListItem = styled.li`
 `;
 
 function PostList({ posts }) {
+  function truncateString(str, num) {
+    // If the length of str is less than or equal to num
+    // just return str--don't truncate it.
+    if (str.length <= num) {
+      return str;
+    }
+    // Return str truncated with '...' concatenated to the end of str.
+    return `${str.slice(0, num)}...`;
+  }
+
   return (
-    <>
+    <Container>
       <List>
         {posts &&
           !!posts.length &&
@@ -70,7 +81,7 @@ function PostList({ posts }) {
                   link={post.url}
                 >
                   <ListTitle>
-                    <a href={post.url}>{post.title}</a>
+                    <a href={post.url}>{truncateString(post.title, 60)}</a>
                   </ListTitle>
                   <br />
                   <span>
@@ -88,7 +99,7 @@ function PostList({ posts }) {
             );
           })}
       </List>
-    </>
+    </Container>
   );
 }
 

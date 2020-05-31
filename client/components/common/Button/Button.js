@@ -1,7 +1,8 @@
+/* eslint-disable consistent-return */
 // eslint-disable-next-line import/no-unresolved
 import React from 'react';
 import styled, { css } from 'styled-components';
-import Loader from '../Loader';
+import Loader from '../Loader/Loader';
 
 const disabledButtonCss = css`
   background-color: ${props => {
@@ -12,9 +13,11 @@ const disabledButtonCss = css`
 `;
 
 const StyledButton = styled.button`
-  display: inline-block;
+  display: flex
+  flex-grow: 1;
+  flex-wrap: no-wrap;
   height: 38px;
-  padding: 0 30px;
+  padding: 0 20px;
   color: ${props => {
     if (props.theme.theme === 'light') return '#c2c3c4';
     return '#03DAC6';

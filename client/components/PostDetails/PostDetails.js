@@ -8,7 +8,7 @@ import { fetchComments, fetchItem } from '../../utils/api';
 import Comment from '../Comments/Comment';
 import Flex from '../common/Flex';
 import UserInfoSkeleton from '../UserInfo/UserInfoSkeleton';
-import Heading from '../common/Heading';
+import Heading from '../common/Heading/Heading';
 import PostSkeleton from '../Posts/PostSkeleton';
 
 const StyledLink = styled(Link)`
