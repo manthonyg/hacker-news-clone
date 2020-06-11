@@ -4,7 +4,7 @@
   "description": "Hacker News (soft) clone",
   "main": "index.js",
   "scripts": {
-    "build": "NODE_ENV='production webpack",
+    "build": "NODE_ENV='production' webpack",
     "server": "webpack-dev-server",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
