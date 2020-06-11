@@ -7,16 +7,12 @@ export default {
   decorators: [withKnobs]
 };
 
-// const options = ['h2', 'h3', 'h4', 'h5'];
-// const defaultValue = 'h2';
-
 export const buttonWithKnobs = () => (
   <Heading
-    disabled={boolean('disabled')}
     center={boolean('center')}
     right={boolean('right')}
-    noMargin={boolean('margin')}
+    noMargin={boolean('no margin')}
   >
-    Heading
+    Example Heading!
   </Heading>
 );
