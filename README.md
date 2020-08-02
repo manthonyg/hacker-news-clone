@@ -6,8 +6,6 @@
 
 A soft clone of the hacker news site.
 
-## Getting Started
-
 ### Dependencies
 
 * `styled-components` for UI, `storybook` for documenting UI, `jest/cypress` for testing.
@@ -15,15 +13,3 @@ A soft clone of the hacker news site.
 ### View
 
 [Deployed on Netlify](https://wizardly-cray-0201df.netlify.app/)
-
-## Authors
-
-Contributors names and contact info
-
-Michael Grandori 
-[@LinkedIn](https://www.linkedin.com/in/michael-grandori/)
-
-## Version History
-
-* 1.0.0
-    * Initial Release
