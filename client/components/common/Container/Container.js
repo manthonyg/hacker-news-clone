@@ -1,24 +1,23 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const Container = styled.div`
-  font-size: 0.5rem;
-  padding-left: ${props => {
+  padding-left: ${(props) => {
     if (props.full) return 0;
-    return 'calc((100vw - 960px) / 2)';
+    return "calc((100vw - 960px) / 2)";
   }};
-  padding-right: ${props => {
+  padding-right: ${(props) => {
     if (props.full) return 0;
-    return 'calc((100vw - 960px) / 2)';
+    return "calc((100vw - 960px) / 2)";
   }};
-  padding-top: ${props => {
+  padding-top: ${(props) => {
     if (props.fullVertical) return 0;
-    if (props.small) return '15px';
-    return '25px';
+    if (props.small) return "15px";
+    return "25px";
   }};
-  padding-bottom: ${props => {
+  padding-bottom: ${(props) => {
     if (props.fullVertical) return 0;
-    if (props.small) return '15px';
-    return '25px';
+    if (props.small) return "15px";
+    return "25px";
   }};
 `;
 

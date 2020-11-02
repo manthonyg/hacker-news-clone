@@ -1,58 +1,58 @@
-import React from 'react';
-import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import React from "react";
+import styled from "styled-components";
+import { Link } from "react-router-dom";
 
-const NavList = styled.ul`
-  list-style: none;
-  text-align: center;
-  float: left;
+const NavTitle = styled.li`
+  display: inline-block;
+  font-weight: 900;
+  padding: 0px 10px;
+  color: ${(props) => {
+    if (props.theme.theme === "light") return "#121212";
+    return "#f1f1f1";
+  }};
 `;
 
 const NavItem = styled.li`
   display: inline-block;
-  padding: 1em;
+  padding: 0px 10px;
 `;
 
 const NavContainer = styled.div`
   postion: fixed;
-  height: 10vh;
+  height: 100%;
   width: 100%;
-  background-color: ${props => {
-    if (props.theme.theme === 'light') return '#f1f1f1';
-    return '#212121';
+  background-color: ${(props) => {
+    if (props.theme.theme === "light") return "#f1f1f1";
+    return "#212121";
   }};
   margin: 0;
   padding: 0;
 `;
 
 const NavButton = styled.button`
-  border: 2px solid #ccc;
-  background-color: ${props => {
-    if (props.theme.theme === 'light') return '#f1f1f1';
-    return '#121212';
-  }};
-  color: ${props => {
-    if (props.theme.theme === 'light') return '#121212';
-    return '#f1f1f1';
-  }};
-  width: 50px;
-  height: 50px;
+  font-size: 1.3rem;
+  padding: 0px;
+  border: none;
+  background: none;
   float: right;
 `;
+
 function Nav({ onClick, theme }) {
   return (
     <NavContainer>
       <NavButton onClick={onClick}>
-        {theme.theme === 'light' ? 'dark mode' : 'light mode'}
+        {theme.theme === "light" ? "🌃" : "🌆"}
       </NavButton>
-      <NavList>
-        <NavItem>
-          <Link to="/">Top</Link>
-        </NavItem>
-        <NavItem>
-          <Link to="/new">New</Link>
-        </NavItem>
-      </NavList>
+      <NavItem>HNC</NavItem>
+      <NavItem>
+        <Link to="/">Top</Link>
+      </NavItem>
+      <NavItem>
+        <Link to="/best">Best</Link>
+      </NavItem>
+      <NavItem>
+        <Link to="/new">New</Link>
+      </NavItem>
     </NavContainer>
   );
 }
