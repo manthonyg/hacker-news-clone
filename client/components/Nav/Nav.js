@@ -45,13 +45,13 @@ function Nav({ onClick, theme }) {
       </NavButton>
       <NavItem>HNC</NavItem>
       <NavItem>
-        <Link to="/">Top</Link>
+        <Link to="/">top</Link>
       </NavItem>
       <NavItem>
-        <Link to="/best">Best</Link>
+        <Link to="/best">best</Link>
       </NavItem>
       <NavItem>
-        <Link to="/new">New</Link>
+        <Link to="/new">new</Link>
       </NavItem>
     </NavContainer>
   );
