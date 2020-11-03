@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
-import styled from "styled-components";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import GoogleFontLoader from "react-google-font-loader";
 import { ThemeProvider } from "styled-components";
