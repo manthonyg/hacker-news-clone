@@ -1,17 +1,19 @@
-import React, { useEffect, useState, useRef } from 'react';
-import queryString from 'query-string';
-import moment from 'moment';
-import { fetchUser, fetchPosts } from '../../utils/api';
-import PostList from '../PostList/PostList';
-import Card from '../common/Card/Card';
-import Flex from '../common/Flex';
-import UserInfoSkeleton from './UserInfoSkeleton';
-import PostsSkeleton from '../Posts/PostSkeleton';
-import { truncateString } from '../../utils/truncate';
-import Button from '../common/Button/Button';
+import React, { useEffect, useState, useRef } from "react";
+import queryString from "query-string";
+import moment from "moment";
+import { fetchUser, fetchPosts } from "../../utils/api";
+import PostList from "../PostList/PostList";
+import Card from "../common/Card/Card";
+import Flex from "../common/Flex";
+import UserInfoSkeleton from "./UserInfoSkeleton";
+import PostsSkeleton from "../Posts/PostSkeleton";
+import { truncateString } from "../../utils/truncate";
+import Button from "../common/Button/Button";
+import Grid from "../common/Grid/Grid";
+import GridItem from "../common/Grid/GridItem";
+import Heading from "../common/Heading/Heading";
 
 function UserInfo() {
-  // eslint-disable-next-line no-restricted-globals
   const { id } = queryString.parse(location.search);
 
   const [user, setUser] = useState(null);
@@ -28,18 +30,18 @@ function UserInfo() {
   useEffect(() => {
     if (componentIsMounted.current) {
       fetchUser(id)
-        .then(incomingUser => {
+        .then((incomingUser) => {
           setUser(incomingUser);
           setUserLoading(false);
 
           return fetchPosts(incomingUser.submitted.slice(0, 10));
         })
-        .then(incomingPosts => {
+        .then((incomingPosts) => {
           setPosts(incomingPosts || []);
           setPostsLoading(false);
         })
-        .catch(error => {
-          setErrorMessage('Error fetching user data.', error);
+        .catch((error) => {
+          setErrorMessage("Error fetching user data.", error);
           setPostsLoading(false);
           setUserLoading(false);
         });
@@ -62,25 +64,35 @@ function UserInfo() {
       ) : (
         <Flex justifyCenter>
           <Card primary>
-            <h1>{user.id}</h1>
-            <p>joined: {moment.unix(user.created).format('YYYY-MM-DD')}</p>
-            <p>karma: {user.karma}</p>
-            <p>posts: {user.submitted.length}</p>
-            <p
-              dangerouslySetInnerHTML={{
-                __html: truncateString(user.about, 10, isTruncated)
-              }}
-            />
-
-            {user.about && user.about.length && (
-              <Button type="button" onClick={toggleTruncate}>
-                {isTruncated ? 'more' : 'less'}
-              </Button>
-            )}
+            <Grid cols="45% 45%" rows="33% 33% 33%">
+              <GridItem col="1" row="1">
+                <h3>{user?.id}</h3>
+                <Heading h5>
+                  joined: {moment.unix(user.created).format("YYYY-MM-DD")}
+                </Heading>
+                {user.about && user.about.length && (
+                  <Button type="button" onClick={toggleTruncate}>
+                    {isTruncated ? "more" : "less"}
+                  </Button>
+                )}
+              </GridItem>
+              <GridItem col="2" row="1">
+                <Heading h5>karma: {user?.karma}</Heading>
+                <Heading h5>posts: {user?.submitted.length}</Heading>
+              </GridItem>
+              <GridItem col="2" row="2">
+                <Heading
+                  h5
+                  dangerouslySetInnerHTML={{
+                    __html: truncateString(user.about, 50, isTruncated),
+                  }}
+                />
+              </GridItem>
+            </Grid>
           </Card>
         </Flex>
       )}
-
+      <Heading>recent posts</Heading>
       {postsLoading === true ? (
         <PostsSkeleton numberOfSkeletons={10} />
       ) : (

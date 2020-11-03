@@ -1,5 +1,5 @@
-import React from 'react';
-import styled, { css } from 'styled-components';
+import React from "react";
+import styled, { css } from "styled-components";
 
 const animatedCss = css`
   opacity: 1;
@@ -8,35 +8,35 @@ const animatedCss = css`
 `;
 
 const primaryCss = css`
-  border: ${props => {
-    if (props.theme.theme === 'dark') return '2px solid #BB86FC';
-    return '2px solid #121212';
+  border: ${(props) => {
+    if (props.theme.theme === "dark") return "2px solid #BB86FC";
+    return "2px solid #121212";
   }};
-  background-color: ${props => {
-    if (props.theme.theme === 'dark') return '#212121';
-    return '#ffffff';
+  background-color: ${(props) => {
+    if (props.theme.theme === "dark") return "#212121";
+    return "#ffffff";
   }};
-  color: ${props => {
-    if (props.theme.theme === 'dark') return '#eeeeee';
-    return '#121212';
+  color: ${(props) => {
+    if (props.theme.theme === "dark") return "#eeeeee";
+    return "#121212";
   }};
 `;
 
 const StyledCard = styled.div`
-  width: ${props => (props.big ? '450px' : '80vw')};
+  width: ${(props) => (props.big ? "450px" : "80vw")};
   padding: 15px;
   opacity: 0;
-  margin: ${props => (props.noMargin ? 0 : '5px')};
+  margin: ${(props) => (props.noMargin ? 0 : "5px")};
   border-radius: 5px;
-  ${props => props.animated && animatedCss}
-  ${props => props.primary && primaryCss}
+  ${(props) => props.animated && animatedCss}
+  ${(props) => props.primary && primaryCss}
 `;
 
 class Card extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      animated: false
+      animated: false,
     };
   }
 

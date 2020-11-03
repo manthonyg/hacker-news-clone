@@ -9,22 +9,8 @@ import Nav from "./components/Nav/Nav";
 import Posts from "./components/Posts/Posts";
 import UserInfo from "./components/UserInfo/UserInfo";
 import PostDetails from "./components/PostDetails/PostDetails";
-
-const Grid = styled.div`
-  display: grid;
-  grid-template-columns: 5% 90% 5%;
-  grid-template-rows: 20px 90%;
-`;
-
-const GridItem = styled.div`
-  display: grid;
-  place-self: center stetch;
-  grid-column-start: ${(props) => props.col};
-  grid-row-start: ${(props) => props.row};
-`;
-// const GridInfiniteScroll = styled(InfiniteScroll)`
-//   display: grid;
-// `;
+import Grid from "./components/common/Grid/Grid";
+import GridItem from "./components/common/Grid/GridItem";
 
 function App() {
   const [theme, setTheme] = useState({ theme: "dark" });
@@ -33,7 +19,7 @@ function App() {
     setTheme({ theme: theme.theme === "light" ? "dark" : "light" });
   };
   return (
-    <Grid>
+    <Grid cols="5% 90% auto" rows="30px auto">
       <Router>
         <ThemeProvider theme={theme}>
           <Theme />

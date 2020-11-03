@@ -1,26 +1,26 @@
-const path = require('path');
-const HTMLWebpackPlugin = require('html-webpack-plugin');
-const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
-const CopyPlugin = require('copy-webpack-plugin');
+const path = require("path");
+const HTMLWebpackPlugin = require("html-webpack-plugin");
+const MomentLocalesPlugin = require("moment-locales-webpack-plugin");
+const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = {
-  entry: './client/index.js',
+  entry: "./client/index.js",
 
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'index_bundle.js',
-    publicPath: '/'
+    path: path.resolve(__dirname, "dist"),
+    filename: "index_bundle.js",
+    publicPath: "/",
   },
   module: {
     rules: [
-      { test: /\.(js)$/, use: 'babel-loader' },
-      { test: /\.(css)$/, use: ['style-loader', 'css-loader'] }
-    ]
+      { test: /\.(js)$/, use: "babel-loader" },
+      { test: /\.(css)$/, use: ["style-loader", "css-loader"] },
+    ],
   },
   devServer: {
-    historyApiFallback: true
+    historyApiFallback: true,
   },
-  mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
+  mode: process.env.NODE_ENV === "production" ? "production" : "development",
   plugins: [
     /**
      * @description MomentLocalesPlugin strips all locales except en
@@ -28,10 +28,10 @@ module.exports = {
 
     new MomentLocalesPlugin(),
     new HTMLWebpackPlugin({
-      template: './client/index.html'
+      template: "./client/index.html",
     }),
     new CopyPlugin({
-      patterns: [{ from: '_redirects', to: path.resolve(__dirname, 'dist') }]
-    })
-  ]
+      patterns: [{ from: "_redirects", to: path.resolve(__dirname, "dist") }],
+    }),
+  ],
 };

@@ -1,10 +1,19 @@
-import React, { Suspense } from "react";
-import styled from "styled-components";
+import React from "react";
+import styled, { keyframes } from "styled-components";
 import { Link } from "react-router-dom";
 import moment from "moment";
-import PostSkeleton from "../Posts/PostSkeleton";
-import Container from "../common/Container/Container";
 import { truncateString } from "../../utils/truncate";
+
+const fadeIn = keyframes`
+from {
+  opacity: 0;
+}
+
+to {
+  opacity: 1;
+}
+}
+`;
 
 const StyledLink = styled(Link)`
   text-decoration: underline;
@@ -24,6 +33,7 @@ const ListTitle = styled.span`
 const ListItem = styled.li`
   padding-left: 25px;
   position: relative;
+  animation: ${fadeIn} 500ms linear;
   margin-bottom: 1em;
   &: before {
     content: "${(props) => {
