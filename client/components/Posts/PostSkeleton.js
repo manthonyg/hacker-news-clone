@@ -1,6 +1,5 @@
 import React from "react";
 import styled, { keyframes, css } from "styled-components";
-import Container from "../common/Container/Container";
 
 const loadingAnimation = keyframes`
 100% {
