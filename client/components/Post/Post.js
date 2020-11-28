@@ -3,23 +3,20 @@ import styled, { keyframes } from "styled-components";
 import { Link } from "react-router-dom";
 import { truncateString } from "../../utils/truncate";
 import moment from "moment";
-
-const fadeIn = keyframes`
-from {
-  opacity: 0;
-}
-
-to {
-  opacity: 1;
-}
-}
-`;
+import { fadeInLeft, fadeInRight } from "../../utils/keyframes/fadeAnimations";
 
 const PostCard = styled.div`
   display: flex;
+  opacity: 0;
   align-content: center;
   width: 100%;
-  height: 100px;
+  min-height: 100px;
+  height: 100%;
+  animation: ${fadeInLeft};
+  animation-duration: 0.3s;
+  animation-delay: ${(props) => props.animationOrder}ms;
+  animation-timing-function: cubic-bezier(0.39, 0.575, 0.565, 1);
+  animation-fill-mode: both;
   background-color: ${(props) => {
     if (props.theme.theme === "light") return "#FFFFFF";
     return "#282828";
@@ -28,6 +25,13 @@ const PostCard = styled.div`
     if (props.theme.theme === "light") return "1px solid #c3c3c3";
     return "1px solid #404040";
   }};
+  &:nth-child(even) {
+    animation: ${fadeInRight};
+    animation-duration: 0.3s;
+    animation-delay: ${(props) => props.animationOrder}ms;
+    animation-timing-function: cubic-bezier(0.39, 0.575, 0.565, 1);
+    animation-fill-mode: both;
+  }
 `;
 
 const List = styled.ol`
@@ -45,7 +49,12 @@ const StyledLink = styled(Link)`
 `;
 
 const ListTitle = styled.span`
-  font-size: 1.2rem;
+  @media (min-width: 1020px) {
+    font-size: 1.2rem;
+  }
+  @media (max-width: 1020px) {
+    font-size: 0.95rem;
+  }
   background-color: ${(props) => {
     if (props.theme.theme === "light") return "#ffc";
     return "#212121";
@@ -73,13 +82,13 @@ const ListItem = styled.li`
   padding-left: 25px;
   margin: 20px;
   position: relative;
-  animation: ${fadeIn} 500ms linear;
   &: before {
     content: "${(props) => {
-      if (props.score > 100) return "🔥" + " " + "+" + props.score;
+      if (props.score >= 1000)
+        return "🔥" + " " + "+" + props.score.toString().slice(0, 1) + "k";
       if (props.score < 10) return "🧊" + " " + "+" + props.score;
-      if (props.score >= 10 && props.score < 99)
-        return "👶" + " " + "+" + props.score;
+      if (props.score >= 10 && props.score <= 999)
+        return "😎" + " " + "+" + props.score;
     }}";
     color: ${(props) => {
       if (props.theme.theme === "light") return "#404040";
@@ -115,12 +124,18 @@ const ListItem = styled.li`
 `;
 
 const ListItemInfo = styled.span`
-  font-size: 0.9rem;
+  @media (min-width: 1020px) {
+    font-size: 1rem;
+  }
+  @media (max-width: 1020px) {
+    font-size: 0.65rem;
+  }
 `;
 
-function Post({ post }) {
+function Post({ post, animationOrder }) {
+  console.log(animationOrder);
   return (
-    <PostCard>
+    <PostCard animationOrder={animationOrder}>
       <List>
         <ListItem
           comments={post && post?.kids && post?.kids.length}
@@ -128,10 +143,12 @@ function Post({ post }) {
           score={post?.score}
         >
           <ListTitle>
-            <a href={post?.url}>{truncateString(post?.title, 60)}</a>
+            <a href={post?.url}>{truncateString(post?.title, 75, true)}</a>
           </ListTitle>
           {post?.url && (
-            <ListLinkName>({truncateString(post?.url, 30, true)})</ListLinkName>
+            <ListLinkName>
+              ({truncateString(post?.url, 100, true)})
+            </ListLinkName>
           )}
           <br />
           <ListItemInfo>

@@ -18,7 +18,7 @@ function App() {
     setTheme({ theme: theme.theme === "light" ? "dark" : "light" });
   };
   return (
-    <Grid cols="5% 90% auto">
+    <Grid cols="1% 98% auto">
       <Router>
         <ThemeProvider theme={theme}>
           <Theme />

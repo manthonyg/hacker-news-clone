@@ -5,6 +5,8 @@ import { fetchMainPosts, fetchPostIds, fetchPosts } from "../../utils/api";
 import Loader from "../common/Loader/Loader";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Heading from "../common/Heading/Heading";
+import { wait } from "../../utils/wait";
+import Header from "../common/Heading/Heading";
 
 function Posts(props) {
   const [isLoading, setIsLoading] = useState(false);
@@ -31,24 +33,28 @@ function Posts(props) {
         currentPostLength - 1,
         currentPostLength + INFINITE_SCROLL_FETCH_AMOUNT
       )
-    ).then((response) => setPosts(posts.concat(response)));
+    ).then((response) => {
+      wait(500).then(() => setPosts(posts.concat(response)));
+    });
   };
 
   return (
     <>
       {isLoading ? (
         <>
-          <h4>Loading {props.type}...</h4>
+          <Header h5>Loading {props.type}...</Header>
           <Loader />
         </>
       ) : (
         <InfiniteScroll
-          style={{ overflow: "hidden" }}
+          style={{ overflow: "auto" }}
           dataLength={posts.length} //This is important field to render the next data
           next={handleInfiniteScroll}
           hasMore={true}
+          scrollThreshold={0.95}
           loader={
             <>
+              <Header h5>Loading {props.type}...</Header>
               <Loader />
             </>
           }

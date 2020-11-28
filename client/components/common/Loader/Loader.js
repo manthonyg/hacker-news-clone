@@ -1,5 +1,5 @@
-import React from 'react';
-import styled, { keyframes } from 'styled-components';
+import React from "react";
+import styled, { keyframes } from "styled-components";
 
 const Bounce = keyframes`
   0%, 80%, 100% { 
@@ -16,9 +16,9 @@ const StyledDotsLoader = styled.div`
 const Dot = styled.span`
   display: inline-block;
   width: 1em;
-  background-color: ${props => {
-    if (props.theme.theme === 'light') return '#03DAC6';
-    return '#202020';
+  background-color: ${(props) => {
+    if (props.theme.theme === "light") return "#121212";
+    return "#212121";
   }};
   height: 1em;
   border-radius: 100%;

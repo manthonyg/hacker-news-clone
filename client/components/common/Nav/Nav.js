@@ -3,16 +3,6 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Heading from "../Heading/Heading";
 
-const NavTitle = styled.li`
-  display: inline-block;
-  font-weight: 900;
-  padding: 0px 10px;
-  color: ${(props) => {
-    if (props.theme.theme === "light") return "#181818";
-    return "#f1f1f1";
-  }};
-`;
-
 const NavItem = styled.li`
   display: inline-block;
   padding: 0px 10px;
@@ -57,13 +47,19 @@ function Nav({ onClick, theme }) {
         </Heading>
       </NavItem>
       <NavItem>
-        <StyledLink to="/">top</StyledLink>
+        <StyledLink to="/">
+          <Heading h5>top</Heading>
+        </StyledLink>
       </NavItem>
       <NavItem>
-        <StyledLink to="/best">best</StyledLink>
+        <StyledLink to="/best">
+          <Heading h5>best</Heading>
+        </StyledLink>
       </NavItem>
       <NavItem>
-        <StyledLink to="/new">new</StyledLink>
+        <StyledLink to="/new">
+          <Heading h5>new</Heading>
+        </StyledLink>
       </NavItem>
     </NavContainer>
   );
