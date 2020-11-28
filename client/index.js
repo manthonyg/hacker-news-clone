@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import GoogleFontLoader from "react-google-font-loader";
 import { ThemeProvider } from "styled-components";
 import { GlobalStyle as Theme } from "./utils/theme";
-import Nav from "./components/Nav/Nav";
+import Nav from "./components/common/Nav/Nav";
 import Posts from "./components/Posts/Posts";
 import UserInfo from "./components/UserInfo/UserInfo";
 import PostDetails from "./components/PostDetails/PostDetails";
@@ -18,7 +18,7 @@ function App() {
     setTheme({ theme: theme.theme === "light" ? "dark" : "light" });
   };
   return (
-    <Grid cols="5% 90% auto" rows="30px auto">
+    <Grid cols="5% 90% auto">
       <Router>
         <ThemeProvider theme={theme}>
           <Theme />

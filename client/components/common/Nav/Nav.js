@@ -1,13 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import Heading from "../Heading/Heading";
 
 const NavTitle = styled.li`
   display: inline-block;
   font-weight: 900;
   padding: 0px 10px;
   color: ${(props) => {
-    if (props.theme.theme === "light") return "#121212";
+    if (props.theme.theme === "light") return "#181818";
     return "#f1f1f1";
   }};
 `;
@@ -19,14 +20,21 @@ const NavItem = styled.li`
 
 const NavContainer = styled.div`
   postion: fixed;
+  display: flex;
+  align-items: center;
   height: 100%;
   width: 100%;
   background-color: ${(props) => {
     if (props.theme.theme === "light") return "#f1f1f1";
-    return "#212121";
+    return "#181818";
   }};
   margin: 0;
   padding: 0;
+`;
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  font-weight: 800;
 `;
 
 const NavButton = styled.button`
@@ -43,15 +51,19 @@ function Nav({ onClick, theme }) {
       <NavButton onClick={onClick}>
         {theme.theme === "light" ? "🌃" : "🌆"}
       </NavButton>
-      <NavItem>HNC</NavItem>
       <NavItem>
-        <Link to="/">top</Link>
+        <Heading underlined p>
+          HNC
+        </Heading>
       </NavItem>
       <NavItem>
-        <Link to="/best">best</Link>
+        <StyledLink to="/">top</StyledLink>
       </NavItem>
       <NavItem>
-        <Link to="/new">new</Link>
+        <StyledLink to="/best">best</StyledLink>
+      </NavItem>
+      <NavItem>
+        <StyledLink to="/new">new</StyledLink>
       </NavItem>
     </NavContainer>
   );

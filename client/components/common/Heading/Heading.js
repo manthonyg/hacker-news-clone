@@ -1,19 +1,23 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
-import styled, { css } from 'styled-components';
+import React from "react";
+import styled, { css } from "styled-components";
 
 const baseStyle = css`
-  margin-bottom: ${props => props.noMargin && '0'};
-  color: ${props => {
-    if (props.theme.theme === 'light') return '#202020';
-    return '03DAC6#';
+  margin-bottom: ${(props) => props.noMargin && "0"};
+  color: ${(props) => {
+    if (props.theme.theme === "light") return "#202020";
+    return "03DAC6#";
   }};
   font-family: 'Poppins', sans-serif;
   font-weight: 600;
-  text-align: ${props => {
-    if (props.center) return 'center';
-    if (props.right) return 'right';
-    return 'left';
+  text-decoration: ${(props) => {
+    if (props.underlined) return "underline";
+    return "none";
+  }}
+  text-align: ${(props) => {
+    if (props.center) return "center";
+    if (props.right) return "right";
+    return "left";
   }};
 
   max-width: 100%;
@@ -57,13 +61,24 @@ const HeadingFive = styled.h5`
   ${baseStyle};
 `;
 
-const Heading = ({ h2, h3, h4, h5, noMargin, right, center, ...props }) => {
+const Heading = ({
+  h2,
+  h3,
+  h4,
+  h5,
+  noMargin,
+  underlined,
+  right,
+  center,
+  ...props
+}) => {
   if (h2)
     return (
       <HeadingTwo
         noMargin={noMargin}
         right={right}
         center={center}
+        underlined={underlined}
         {...props}
       />
     );
@@ -73,6 +88,7 @@ const Heading = ({ h2, h3, h4, h5, noMargin, right, center, ...props }) => {
         noMargin={noMargin}
         right={right}
         center={center}
+        underlined={underlined}
         {...props}
       />
     );
@@ -82,6 +98,7 @@ const Heading = ({ h2, h3, h4, h5, noMargin, right, center, ...props }) => {
         noMargin={noMargin}
         right={right}
         center={center}
+        underlined={underlined}
         {...props}
       />
     );
@@ -91,6 +108,7 @@ const Heading = ({ h2, h3, h4, h5, noMargin, right, center, ...props }) => {
         noMargin={noMargin}
         right={right}
         center={center}
+        underlined={underlined}
         {...props}
       />
     );

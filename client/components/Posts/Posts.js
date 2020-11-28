@@ -43,6 +43,7 @@ function Posts(props) {
         </>
       ) : (
         <InfiniteScroll
+          style={{ overflow: "hidden" }}
           dataLength={posts.length} //This is important field to render the next data
           next={handleInfiniteScroll}
           hasMore={true}

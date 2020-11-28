@@ -9,8 +9,8 @@ const animatedCss = css`
 
 const primaryCss = css`
   border: ${(props) => {
-    if (props.theme.theme === "dark") return "2px solid #BB86FC";
-    return "2px solid #121212";
+    if (props.theme.theme === "dark") return "1px solid #BB86FC";
+    return "1px solid #121212";
   }};
   background-color: ${(props) => {
     if (props.theme.theme === "dark") return "#212121";
