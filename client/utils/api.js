@@ -46,7 +46,7 @@ export function fetchMainPosts(type) {
         throw new Error(`There was an error fetching the ${type} posts.`);
       }
 
-      return ids.slice(0, 50);
+      return ids.slice(0, 9);
     })
     .then((ids) => Promise.all(ids.map(fetchItem)))
     .then((posts) => removeDeleted(onlyPosts(removeDead(posts))));

@@ -9,7 +9,7 @@ function PostList({ posts }) {
         posts.map((post, idx) => (
           <Post
             key={`${post?.by.slice(-5)}${idx}`}
-            animationOrder={(idx * 50 + 50) % 550}
+            animationOrder={(idx + 1 * 50) % 500}
             post={post}
           />
         ))}
