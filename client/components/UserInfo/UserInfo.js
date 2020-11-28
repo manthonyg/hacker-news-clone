@@ -92,7 +92,7 @@ function UserInfo() {
           </Card>
         </Flex>
       )}
-      <Heading>recent posts</Heading>
+      <Heading h4>recent posts</Heading>
       {postsLoading === true ? (
         <PostsSkeleton numberOfSkeletons={10} />
       ) : (

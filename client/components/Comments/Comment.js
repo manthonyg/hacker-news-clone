@@ -1,27 +1,111 @@
 /* eslint-disable react/no-danger */
-import React from "react";
+import React, { useState } from "react";
 import moment from "moment";
-import styled from "styled-components";
-import { Link } from "react-router-dom";
-import Card from "../common/Card/Card";
 import Heading from "../common/Heading/Heading";
+import styled, { keyframes } from "styled-components";
+import { Link } from "react-router-dom";
+import { truncateString } from "../../utils/truncate";
+import { fadeInLeft, fadeInRight } from "../../utils/keyframes/fadeAnimations";
+import Button from "../common/Button/Button";
+
+const CommentCard = styled.div`
+  opacity: 0;
+  width: 100%;
+  min-height: 100px;
+  animation: ${fadeInLeft};
+  animation-duration: 0.3s;
+  animation-delay: ${(props) => props.animationOrder}ms;
+  animation-timing-function: cubic-bezier(0.39, 0.575, 0.565, 1);
+  animation-fill-mode: both;
+  background-color: ${(props) => {
+    if (props.theme.theme === "light") return "#FFFFFF";
+    return "#282828";
+  }};
+  border-bottom: ${(props) => {
+    if (props.theme.theme === "light") return "1px solid #c3c3c3";
+    return "1px solid #404040";
+  }};
+  &:nth-child(even) {
+    animation: ${fadeInRight};
+    animation-duration: 0.3s;
+    animation-delay: ${(props) => props.animationOrder}ms;
+    animation-timing-function: cubic-bezier(0.39, 0.575, 0.565, 1);
+    animation-fill-mode: both;
+  }
+`;
 
 const StyledLink = styled(Link)`
   text-decoration: underline;
-  color: #bb86fc;
-  font-weight: 800;
+  color: ${(props) => {
+    if (props.theme.theme === "light") return "#404040";
+    return "#bb86fc";
+  }};
+`;
+
+const CommentCardHeader = styled.p`
+  margin-left: 5px;
+`;
+
+const CommentCardContent = styled.p`
+  display: flex;
+  flex-wrap: wrap;
+  overflow-wrap: break-word;
+  max-width: 800px;
+  margin-left: 20px;
+  position: relative;
+  height: 100%;
+  &: after {
+  content: "";
+  text-align: right;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: ${(props) => {
+    if (!!props.truncatedStyle) {
+      if (props.theme.theme === "light") {
+        return "linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1) 80%)";
+      }
+      return "linear-gradient(to bottom, rgba(40, 40, 40, 0), rgba(40, 40, 40, 1) 80%)";
+    }
+  }}
 `;
 
 function Comment({ by, id, text, time }) {
-  return (
-    <Card primary animated>
-      <Heading h5>
-        <StyledLink to={`/user?id=${by}`}>{by}</StyledLink> at{" "}
-        {moment.unix(time).format("YYYY-MM-DD")}
-      </Heading>
+  const MAX_STRING_LENGTH = 350;
 
-      <p dangerouslySetInnerHTML={{ __html: text }} />
-    </Card>
+  const [isTruncated, setIsTruncated] = useState(
+    text.length > MAX_STRING_LENGTH
+  );
+  const handleTruncate = () => {
+    setIsTruncated(!isTruncated);
+  };
+  return (
+    <CommentCard>
+      <CommentCardHeader>
+        <Heading h5>
+          <StyledLink to={`/user?id=${by}`}>{by}</StyledLink> at{" "}
+          {moment.unix(time).format("YYYY-MM-DD")}:
+        </Heading>
+      </CommentCardHeader>{" "}
+      <CommentCardContent truncatedStyle={isTruncated}>
+        {" "}
+        <p
+          dangerouslySetInnerHTML={{
+            __html:
+              text.length > MAX_STRING_LENGTH
+                ? truncateString(text, MAX_STRING_LENGTH, isTruncated)
+                : text,
+          }}
+        />
+      </CommentCardContent>
+      {text.length > MAX_STRING_LENGTH && (
+        <Button onClick={handleTruncate}>
+          {isTruncated ? "read more" : "less"}
+        </Button>
+      )}
+    </CommentCard>
   );
 }
 export default Comment;
