@@ -15,7 +15,7 @@ function App() {
   const [theme, setTheme] = useState({ theme: "light" });
 
   const handleTheme = () => {
-    setTheme({ theme: theme.theme === "light" ? "light" : "dark" });
+    setTheme({ theme: theme.theme === "light" ? "dark" : "light" });
   };
   return (
     <Grid cols="1% 98% auto">
