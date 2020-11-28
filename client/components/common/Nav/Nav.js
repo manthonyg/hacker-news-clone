@@ -39,7 +39,7 @@ function Nav({ onClick, theme }) {
   return (
     <NavContainer>
       <NavButton onClick={onClick}>
-        {theme.theme === "light" ? "🌃" : "🌆"}
+        {theme.theme === "light" ? "🌙" : "💡"}
       </NavButton>
       <NavItem>
         <Heading underlined p>
