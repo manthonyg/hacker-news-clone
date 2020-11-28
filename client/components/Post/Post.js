@@ -157,7 +157,7 @@ function Post({ post, animationOrder }) {
             {moment.unix(post?.time).format("YYYY-MM-DD")}
             {" | "}
             <StyledLink to={`/post?id=${post?.id}`}>
-              comments {post?.descendants}
+              comments {post?.kids?.length}
             </StyledLink>
           </ListItemInfo>
         </ListItem>

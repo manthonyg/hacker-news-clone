@@ -5,7 +5,7 @@ function PostList({ posts }) {
   return (
     <>
       {posts &&
-        posts.length &&
+        !!posts.length &&
         posts.map((post, idx) => (
           <Post
             key={`${post?.by.slice(-5)}${idx}`}

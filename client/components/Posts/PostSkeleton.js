@@ -6,14 +6,30 @@ const loadingAnimation = keyframes`
     transform: translateX(100%);
 }
 `;
+const PostCard = styled.div`
+  display: flex;
+  align-content: center;
+  width: 100%;
+  min-height: 100px;
+  height: 100%;
+  background-color: ${(props) => {
+    if (props.theme.theme === "light") return "#FFFFFF";
+    return "#282828";
+  }};
+  border-bottom: ${(props) => {
+    if (props.theme.theme === "light") return "1px solid #c3c3c3";
+    return "1px solid #404040";
+  }};
+`;
 
 const withEmoji = css`
   content: "";
   position: absolute;
   border-radius: 100%;
-  left: -25px;
-  width: 20px;
-  height: 20px;
+  left: -50px;
+
+  width: 40px;
+  height: 40px;
   background-color: ${(props) => {
     if (props.theme.theme === "light") return "#eeeeee";
     return "#212121";
@@ -29,7 +45,7 @@ const Skeleton = styled.div`
 const SkeletonContent = styled.span`
   height: 13px;
   position: absolute;
-  top: 8px;
+  top: 40px;
   width: 100%;
   background-color: ${(props) => {
     if (props.theme.theme === "light") return "#eeeeee";
@@ -41,7 +57,7 @@ const SkeletonContent = styled.span`
   }
   &:nth-child(2) {
     height: 8px;
-    top: 28px;
+    top: 60px;
   }
 `;
 
@@ -52,6 +68,7 @@ const Loading = styled.div`
 
 const SkeletonInner = styled.div`
   height: 75px;
+  margin-top: 20px;
 `;
 
 function PostSkeleton({ numberOfSkeletons, noEmoji }) {
@@ -59,14 +76,15 @@ function PostSkeleton({ numberOfSkeletons, noEmoji }) {
     <>
       {[...Array(numberOfSkeletons)].map((skeleton, i) => (
         // eslint-disable-next-line react/no-array-index-key
-
-        <Skeleton key={i}>
-          <Loading>
-            <SkeletonContent noEmoji={noEmoji} />
-            <SkeletonContent />
-            <SkeletonInner />
-          </Loading>
-        </Skeleton>
+        <PostCard>
+          <Skeleton key={i}>
+            <Loading>
+              <SkeletonContent noEmoji={noEmoji} />
+              <SkeletonContent />
+              <SkeletonInner />
+            </Loading>
+          </Skeleton>
+        </PostCard>
       ))}
     </>
   );
