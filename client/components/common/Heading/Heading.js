@@ -8,6 +8,7 @@ const baseStyle = css`
     if (props.theme.theme === "light") return "#202020";
     return "03DAC6#";
   }};
+  display: block;
   font-family: 'Poppins', sans-serif;
   font-weight: 600;
   text-decoration: ${(props) => {

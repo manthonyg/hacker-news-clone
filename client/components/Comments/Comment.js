@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import moment from "moment";
 import Heading from "../common/Heading/Heading";
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { truncateString } from "../../utils/truncate";
 import { fadeInLeft, fadeInRight } from "../../utils/keyframes/fadeAnimations";
@@ -44,14 +44,15 @@ const StyledLink = styled(Link)`
 
 const CommentCardHeader = styled.p`
   margin-left: 5px;
+  margin-top: 10px;
 `;
 
 const CommentCardContent = styled.p`
-  display: flex;
+  display: block;
   flex-wrap: wrap;
   overflow-wrap: break-word;
   max-width: 800px;
-  margin-left: 20px;
+  margin: 10px 10%;
   position: relative;
   height: 100%;
   &: after {
@@ -72,11 +73,12 @@ const CommentCardContent = styled.p`
   }}
 `;
 
-function Comment({ by, id, text, time }) {
-  const MAX_STRING_LENGTH = 350;
+function Comment({ comment }) {
+  const { by, id, text, time } = comment;
 
+  const MAX_STRING_LENGTH = 500;
   const [isTruncated, setIsTruncated] = useState(
-    text.length > MAX_STRING_LENGTH
+    text?.length > MAX_STRING_LENGTH
   );
   const handleTruncate = () => {
     setIsTruncated(!isTruncated);
@@ -94,13 +96,13 @@ function Comment({ by, id, text, time }) {
         <p
           dangerouslySetInnerHTML={{
             __html:
-              text.length > MAX_STRING_LENGTH
+              text?.length > MAX_STRING_LENGTH
                 ? truncateString(text, MAX_STRING_LENGTH, isTruncated)
                 : text,
           }}
         />
       </CommentCardContent>
-      {text.length > MAX_STRING_LENGTH && (
+      {text?.length > MAX_STRING_LENGTH && (
         <Button onClick={handleTruncate}>
           {isTruncated ? "read more" : "less"}
         </Button>

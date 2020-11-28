@@ -1,34 +1,32 @@
 /* eslint-disable no-console */
 import React, { useState, useEffect } from "react";
 import queryString from "query-string";
-import moment from "moment";
-import { Link } from "react-router-dom";
-import styled from "styled-components";
+import Loader from "../common/Loader/Loader";
 import { fetchComments, fetchItem } from "../../utils/api";
-import Comment from "../Comments/Comment";
 import Flex from "../common/Flex";
-import UserInfoSkeleton from "../UserInfo/UserInfoSkeleton";
 import Heading from "../common/Heading/Heading";
 import PostSkeleton from "../Posts/PostSkeleton";
 import Post from "../Post/Post";
-const StyledLink = styled(Link)`
-  text-decoration: underline;
-  color: #bb86fc;
-  font-weight: 800;
-`;
+import CommentList from "../CommentList/CommentList";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 function SinglePost() {
+  const INFINITE_SCROLL_FETCH_AMOUNT = 10;
   const { id } = queryString.parse(location.search);
   const [comments, setComments] = useState([]);
+  const [commentIds, setCommentIds] = useState([]);
   const [post, setPost] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-
+  console.log(comments);
   useEffect(() => {
     setIsLoading(true);
     fetchItem(id)
       .then((userpost) => {
         setPost(userpost);
-        return fetchComments(userpost.kids || []);
+        setCommentIds(userpost?.kids);
+        return fetchComments(
+          userpost?.kids.slice(0, INFINITE_SCROLL_FETCH_AMOUNT) || []
+        );
       })
       .then((comments) => {
         setComments(comments);
@@ -38,6 +36,16 @@ function SinglePost() {
         console.warn("There was a problem gathering these resources", error);
       });
   }, []);
+
+  const handleInfiniteScroll = () => {
+    const currentCommentLength = comments.length;
+    fetchComments(
+      commentIds.slice(
+        currentCommentLength - 1,
+        currentCommentLength + INFINITE_SCROLL_FETCH_AMOUNT
+      )
+    ).then((response) => setComments(comments.concat(response)));
+  };
 
   return (
     <>
@@ -53,20 +61,28 @@ function SinglePost() {
           <Heading h5>viewing:</Heading>
           {post && <Post post={post} />}
           <Flex>
-            {comments && <Heading h5>Comments ({comments.length}):</Heading>}
-            {comments && comments.length ? (
-              comments.map((comment) => (
-                <Comment
-                  key={comment.id}
-                  id={comment.id}
-                  text={comment.text}
-                  by={comment.by}
-                  time={comment.time}
-                />
-              ))
-            ) : (
-              <Heading>No Comments</Heading>
+            {comments && (
+              <Heading h5>
+                comments ({comments.length} of {commentIds.length}):
+              </Heading>
             )}
+
+            <InfiniteScroll
+              style={{ overflow: "auto" }}
+              dataLength={comments.length} //This is important field to render the next data
+              next={handleInfiniteScroll}
+              hasMore={comments?.length <= commentIds?.length}
+              scrollThreshold={0.95}
+              loader={
+                <>
+                  <Heading h5>Loading...</Heading>
+                  <Loader />
+                </>
+              }
+              endMessage={<Heading>no more comments</Heading>}
+            >
+              <CommentList comments={comments} />
+            </InfiniteScroll>
           </Flex>
         </>
       )}

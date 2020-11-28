@@ -46,7 +46,7 @@ function Posts(props) {
           style={{ overflow: "auto" }}
           dataLength={posts.length} //This is important field to render the next data
           next={handleInfiniteScroll}
-          hasMore={true}
+          hasMore={posts?.length < postIds?.length}
           scrollThreshold={0.95}
           loader={
             <>
