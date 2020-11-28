@@ -1,11 +1,9 @@
-/* eslint-disable no-console */
 import React, { useState, useEffect } from "react";
 import PostList from "../PostList/PostList";
 import { fetchMainPosts, fetchPostIds, fetchPosts } from "../../utils/api";
 import Loader from "../common/Loader/Loader";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Heading from "../common/Heading/Heading";
-import { wait } from "../../utils/wait";
 import Header from "../common/Heading/Heading";
 
 function Posts(props) {

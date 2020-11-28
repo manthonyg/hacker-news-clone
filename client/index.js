@@ -12,10 +12,10 @@ import Grid from "./components/common/Grid/Grid";
 import GridItem from "./components/common/Grid/GridItem";
 
 function App() {
-  const [theme, setTheme] = useState({ theme: "dark" });
+  const [theme, setTheme] = useState({ theme: "light" });
 
   const handleTheme = () => {
-    setTheme({ theme: theme.theme === "light" ? "dark" : "light" });
+    setTheme({ theme: theme.theme === "light" ? "light" : "dark" });
   };
   return (
     <Grid cols="1% 98% auto">
