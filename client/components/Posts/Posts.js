@@ -33,9 +33,7 @@ function Posts(props) {
         currentPostLength - 1,
         currentPostLength + INFINITE_SCROLL_FETCH_AMOUNT
       )
-    ).then((response) => {
-      wait(500).then(() => setPosts(posts.concat(response)));
-    });
+    ).then((response) => setPosts(posts.concat(response)));
   };
 
   return (
