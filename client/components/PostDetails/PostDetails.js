@@ -10,22 +10,22 @@ import Post from "../Post/Post";
 import CommentList from "../CommentList/CommentList";
 import InfiniteScroll from "react-infinite-scroll-component";
 
-function SinglePost() {
+function PostDetails() {
   const INFINITE_SCROLL_FETCH_AMOUNT = 10;
   const { id } = queryString.parse(location.search);
   const [comments, setComments] = useState([]);
   const [commentIds, setCommentIds] = useState([]);
   const [post, setPost] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  console.log(comments);
+
   useEffect(() => {
     setIsLoading(true);
     fetchItem(id)
-      .then((userpost) => {
-        setPost(userpost);
-        setCommentIds(userpost?.kids);
+      .then((post) => {
+        setPost(post);
+        setCommentIds(post?.kids);
         return fetchComments(
-          userpost?.kids.slice(0, INFINITE_SCROLL_FETCH_AMOUNT) || []
+          post?.kids.slice(0, INFINITE_SCROLL_FETCH_AMOUNT) || []
         );
       })
       .then((comments) => {
@@ -63,15 +63,15 @@ function SinglePost() {
           <Flex>
             {comments && (
               <Heading h5>
-                comments ({comments.length} of {commentIds.length}):
+                comments ({comments?.length} of {commentIds?.length}):
               </Heading>
             )}
 
             <InfiniteScroll
               style={{ overflow: "auto" }}
-              dataLength={comments.length} //This is important field to render the next data
+              dataLength={comments?.length}
               next={handleInfiniteScroll}
-              hasMore={comments?.length <= commentIds?.length}
+              hasMore={comments?.length <= commentIds?.length - 1}
               scrollThreshold={0.95}
               loader={
                 <>
@@ -90,4 +90,4 @@ function SinglePost() {
   );
 }
 
-export default SinglePost;
+export default PostDetails;

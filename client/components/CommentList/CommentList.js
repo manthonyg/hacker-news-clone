@@ -1,5 +1,6 @@
 import React from "react";
 import Comment from "../Comments/Comment";
+import PropTypes from "prop-types";
 
 function CommentList({ comments }) {
   return (
@@ -12,5 +13,16 @@ function CommentList({ comments }) {
     </>
   );
 }
+
+CommentList.propTypes = {
+  comments: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      by: PropTypes.string.isRequired,
+      text: PropTypes.string.isRequired,
+      time: PropTypes.number.isRequired,
+    })
+  ),
+};
 
 export default CommentList;

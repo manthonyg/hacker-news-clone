@@ -1,9 +1,10 @@
 import React from "react";
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { truncateString } from "../../utils/truncate";
 import moment from "moment";
 import { fadeInLeft, fadeInRight } from "../../utils/keyframes/fadeAnimations";
+import PropTypes from "prop-types";
 
 const PostCard = styled.div`
   display: flex;
@@ -133,37 +134,48 @@ const ListItemInfo = styled.span`
 `;
 
 function Post({ post, animationOrder }) {
-  console.log(animationOrder);
+  const { id, url, score, kids, by, title, time } = post;
+
   return (
     <PostCard animationOrder={animationOrder}>
       <List>
-        <ListItem
-          comments={post && post?.kids && post?.kids.length}
-          link={post?.url}
-          score={post?.score}
-        >
+        <ListItem comments={kids && kids.length} link={url} score={score}>
           <ListTitle>
-            <a href={post?.url}>{truncateString(post?.title, 75, true)}</a>
+            <a href={url}>{truncateString(title, 75, true)}</a>
           </ListTitle>
-          {post?.url && (
-            <ListLinkName>
-              ({truncateString(post?.url, 100, true)})
-            </ListLinkName>
+          {url && (
+            <ListLinkName>({truncateString(url, 100, true)})</ListLinkName>
           )}
           <br />
           <ListItemInfo>
-            <StyledLink to={`/user?id=${post?.by}`}>by {post?.by}</StyledLink>
+            <StyledLink to={`/user?id=${by}`}>by {by}</StyledLink>
             {" | "}
-            {moment.unix(post?.time).format("YYYY-MM-DD")}
-            {" | "}
-            <StyledLink to={`/post?id=${post?.id}`}>
-              comments {post?.kids?.length}
-            </StyledLink>
+            {moment.unix(time).format("YYYY-MM-DD")}
+
+            {post?.kids?.length > 0 && (
+              <StyledLink to={`/post?id=${id}`}>
+                {" | "}
+                comments {kids?.length}
+              </StyledLink>
+            )}
           </ListItemInfo>
         </ListItem>
       </List>
     </PostCard>
   );
 }
+
+Post.propTypes = {
+  post: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    url: PropTypes.string,
+    score: PropTypes.number.isRequired,
+    kids: PropTypes.array,
+    by: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    time: PropTypes.number.isRequired,
+  }),
+  animationOrder: PropTypes.number,
+};
 
 export default Post;

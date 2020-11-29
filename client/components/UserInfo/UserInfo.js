@@ -63,7 +63,7 @@ function UserInfo() {
         <UserInfoSkeleton numberOfSkeletons={1} />
       ) : (
         <Flex justifyCenter>
-          <Card primary>
+          <Card noMargin>
             <Grid cols="45% 45%" rows="33% 33% 33%">
               <GridItem col="1" row="1">
                 <h3>{user?.id}</h3>

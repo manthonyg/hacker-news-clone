@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Heading from "../Heading/Heading";
+import PropTypes from "prop-types";
 
 const NavItem = styled.li`
   display: inline-block;
@@ -15,8 +16,8 @@ const NavContainer = styled.div`
   height: 100%;
   width: 100%;
   background-color: ${(props) => {
-    if (props.theme.theme === "light") return "#f1f1f1";
-    return "#181818";
+    if (props.theme.theme === "light") return "#e3e3e3";
+    return "#212121";
   }};
   margin: 0;
   padding: 0;
@@ -64,5 +65,10 @@ function Nav({ onClick, theme }) {
     </NavContainer>
   );
 }
+
+Nav.propTypes = {
+  onClick: PropTypes.func.isRequired,
+  theme: PropTypes.object.isRequired,
+};
 
 export default Nav;

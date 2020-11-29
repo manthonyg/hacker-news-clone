@@ -5,8 +5,9 @@ import Loader from "../common/Loader/Loader";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Heading from "../common/Heading/Heading";
 import Header from "../common/Heading/Heading";
-
+import PropTypes from "prop-types";
 function Posts(props) {
+  const { type } = props;
   const [isLoading, setIsLoading] = useState(false);
   const [posts, setPosts] = useState([]);
   const [postIds, setPostIds] = useState([]);
@@ -14,15 +15,15 @@ function Posts(props) {
 
   useEffect(() => {
     setIsLoading(true);
-    fetchMainPosts(props.type).then((response) => {
+    fetchMainPosts(type).then((response) => {
       setPosts(response);
       setIsLoading(false);
     });
 
-    fetchPostIds(props.type)
+    fetchPostIds(type)
       .then((response) => setPostIds(response))
       .catch((error) => console.log(error));
-  }, [props.type]);
+  }, [type]);
 
   const handleInfiniteScroll = () => {
     const currentPostLength = posts.length;
@@ -38,7 +39,7 @@ function Posts(props) {
     <>
       {isLoading ? (
         <>
-          <Header h5>Loading {props.type}...</Header>
+          <Header h5>Loading {type}...</Header>
           <Loader />
         </>
       ) : (
@@ -50,7 +51,7 @@ function Posts(props) {
           scrollThreshold={0.95}
           loader={
             <>
-              <Header h5>Loading {props.type}...</Header>
+              <Header h5>Loading {type}...</Header>
               <Loader />
             </>
           }
@@ -62,5 +63,9 @@ function Posts(props) {
     </>
   );
 }
+
+Posts.propTypes = {
+  type: PropTypes.string.isRequired,
+};
 
 export default Posts;

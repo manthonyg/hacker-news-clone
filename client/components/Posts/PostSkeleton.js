@@ -1,11 +1,7 @@
 import React from "react";
-import styled, { keyframes, css } from "styled-components";
+import styled, { css } from "styled-components";
+import PropTypes from "prop-types";
 
-const loadingAnimation = keyframes`
-100% {
-    transform: translateX(100%);
-}
-`;
 const PostCard = styled.div`
   display: flex;
   align-content: center;
@@ -71,12 +67,12 @@ const SkeletonInner = styled.div`
   margin-top: 20px;
 `;
 
-function PostSkeleton({ numberOfSkeletons, noEmoji }) {
+function PostSkeleton({ numberOfSkeletons = 1, noEmoji }) {
   return (
     <>
       {[...Array(numberOfSkeletons)].map((skeleton, i) => (
         // eslint-disable-next-line react/no-array-index-key
-        <PostCard>
+        <PostCard key={i + numberOfSkeletons}>
           <Skeleton key={i}>
             <Loading>
               <SkeletonContent noEmoji={noEmoji} />
@@ -89,5 +85,10 @@ function PostSkeleton({ numberOfSkeletons, noEmoji }) {
     </>
   );
 }
+
+PostSkeleton.propTypes = {
+  numberOfSkeletons: PropTypes.number,
+  noEmoji: PropTypes.bool,
+};
 
 export default PostSkeleton;

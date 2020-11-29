@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { truncateString } from "../../utils/truncate";
 import { fadeInLeft, fadeInRight } from "../../utils/keyframes/fadeAnimations";
 import Button from "../common/Button/Button";
+import PropTypes from "prop-types";
 
 const CommentCard = styled.div`
   opacity: 0;
@@ -66,9 +67,9 @@ const CommentCardContent = styled.p`
   background: ${(props) => {
     if (!!props.truncatedStyle) {
       if (props.theme.theme === "light") {
-        return "linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1) 80%)";
+        return "linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1) 100%)";
       }
-      return "linear-gradient(to bottom, rgba(40, 40, 40, 0), rgba(40, 40, 40, 1) 80%)";
+      return "linear-gradient(to bottom, rgba(40, 40, 40, 0), rgba(40, 40, 40, 1) 10 0%)";
     }
   }}
 `;
@@ -80,9 +81,11 @@ function Comment({ comment }) {
   const [isTruncated, setIsTruncated] = useState(
     text?.length > MAX_STRING_LENGTH
   );
+
   const handleTruncate = () => {
     setIsTruncated(!isTruncated);
   };
+
   return (
     <CommentCard>
       <CommentCardHeader>
@@ -110,4 +113,14 @@ function Comment({ comment }) {
     </CommentCard>
   );
 }
+
+Comment.propTypes = {
+  comment: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    by: PropTypes.string.isRequired,
+    text: PropTypes.string.isRequired,
+    time: PropTypes.number.isRequired,
+  }),
+};
+
 export default Comment;
