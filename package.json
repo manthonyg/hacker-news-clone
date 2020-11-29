@@ -8,7 +8,8 @@
     "server": "webpack-dev-server",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "cypress": "cypress open"
+    "cypress": "cypress open",
+    "test": "jest"
   },
   "babel": {
     "presets": [
@@ -61,6 +62,7 @@
     "react-infinite-scroll-component": "^5.1.0",
     "react-router": "^5.1.2",
     "react-router-dom": "^5.1.2",
+    "react-test-renderer": "^17.0.1",
     "styled-components": "^5.1.0"
   }
 }

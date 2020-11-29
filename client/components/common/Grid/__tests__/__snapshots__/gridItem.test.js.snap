@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="sc-AxjAm lmzCKR"
+  cols="95% 5% auto"
+  rows="10% 80% auto"
+>
+  <div
+    className="sc-AxirZ eBsJTx"
+  >
+    1
+  </div>
+  <div
+    className="sc-AxirZ eBsJTx"
+  >
+    2
+  </div>
+  <div
+    className="sc-AxirZ eBsJTx"
+  >
+    3
+  </div>
+</div>
+`;

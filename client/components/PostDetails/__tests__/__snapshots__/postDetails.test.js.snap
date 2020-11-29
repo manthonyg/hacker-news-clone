@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly with all props 1`] = `
+Array [
+  <h5
+    className="sc-fzozJi ekWdoI"
+  >
+    viewing:
+  </h5>,
+  <div
+    className="sc-AxiKw dGHlTc"
+  >
+    <h5
+      className="sc-fzozJi ekWdoI"
+    >
+      comments (
+      0
+       of 
+      0
+      ):
+    </h5>
+    <div
+      className="infinite-scroll-component__outerdiv"
+      style={Object {}}
+    >
+      <div
+        className="infinite-scroll-component "
+        style={
+          Object {
+            "WebkitOverflowScrolling": "touch",
+            "height": "auto",
+            "overflow": "auto",
+          }
+        }
+      >
+        <h1
+          className="sc-AxgMl igiwKw"
+        >
+          no more comments
+        </h1>
+      </div>
+    </div>
+  </div>,
+]
+`;

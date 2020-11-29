@@ -1,9 +1,9 @@
 /* eslint-disable no-console */
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import queryString from "query-string";
 import Loader from "../common/Loader/Loader";
 import { fetchComments, fetchItem } from "../../utils/api";
-import Flex from "../common/Flex";
+import Flex from "../common/Flex/Flex";
 import Heading from "../common/Heading/Heading";
 import PostSkeleton from "../Posts/PostSkeleton";
 import Post from "../Post/Post";
@@ -18,23 +18,30 @@ function PostDetails() {
   const [post, setPost] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
+  const componentIsMounted = useRef(true);
+
   useEffect(() => {
-    setIsLoading(true);
-    fetchItem(id)
-      .then((post) => {
-        setPost(post);
-        setCommentIds(post?.kids);
-        return fetchComments(
-          post?.kids.slice(0, INFINITE_SCROLL_FETCH_AMOUNT) || []
-        );
-      })
-      .then((comments) => {
-        setComments(comments);
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        console.warn("There was a problem gathering these resources", error);
-      });
+    if (componentIsMounted.current) {
+      setIsLoading(true);
+      fetchItem(id)
+        .then((post) => {
+          setPost(post);
+          setCommentIds(post?.kids);
+          return fetchComments(
+            post?.kids.slice(0, INFINITE_SCROLL_FETCH_AMOUNT) || []
+          );
+        })
+        .then((comments) => {
+          setComments(comments);
+          setIsLoading(false);
+        })
+        .catch((error) => {
+          console.warn("There was a problem gathering these resources", error);
+        });
+    }
+    return () => {
+      componentIsMounted.current = false;
+    };
   }, []);
 
   const handleInfiniteScroll = () => {

@@ -87,7 +87,7 @@ function PostSkeleton({ numberOfSkeletons = 1, noEmoji }) {
 }
 
 PostSkeleton.propTypes = {
-  numberOfSkeletons: PropTypes.number,
+  numberOfSkeletons: PropTypes.number.isRequired,
   noEmoji: PropTypes.bool,
 };
 

@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly with all props 1`] = `
+<div
+  className="sc-AxmLO vFtN"
+>
+  <p
+    className="sc-fzoLsD cuxcLk"
+  >
+    <h5
+      className="sc-AxhUy gDpfhH"
+    >
+      <a
+        className="sc-fzozJi eraVuk"
+        href="/user?id=moopie"
+        onClick={[Function]}
+      >
+        moopie
+      </a>
+       at
+       
+      1977-04-30
+      :
+    </h5>
+  </p>
+   
+  <p
+    className="sc-fzpans jZRKiG"
+  >
+     
+    <p
+      dangerouslySetInnerHTML={
+        Object {
+          "__html": "Jest: a tale of misery",
+        }
+      }
+    />
+  </p>
+</div>
+`;

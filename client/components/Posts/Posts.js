@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import PostList from "../PostList/PostList";
 import { fetchMainPosts, fetchPostIds, fetchPosts } from "../../utils/api";
 import Loader from "../common/Loader/Loader";
@@ -13,16 +13,21 @@ function Posts(props) {
   const [postIds, setPostIds] = useState([]);
   const INFINITE_SCROLL_FETCH_AMOUNT = 10;
 
-  useEffect(() => {
-    setIsLoading(true);
-    fetchMainPosts(type).then((response) => {
-      setPosts(response);
-      setIsLoading(false);
-    });
+  const componentIsMounted = useRef(true);
 
-    fetchPostIds(type)
-      .then((response) => setPostIds(response))
-      .catch((error) => console.log(error));
+  useEffect(() => {
+    if (componentIsMounted.current) {
+      setIsLoading(true);
+      fetchMainPosts(type).then((response) => {
+        setPosts(response);
+        setIsLoading(false);
+      });
+
+      fetchPostIds(type)
+        .then((response) => setPostIds(response))
+        .catch((error) => console.log(error));
+    }
+    return () => (componentIsMounted.current = false);
   }, [type]);
 
   const handleInfiniteScroll = () => {

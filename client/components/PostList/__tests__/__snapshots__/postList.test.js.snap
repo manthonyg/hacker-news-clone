@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly with all props 1`] = `
+<div
+  className="sc-AxjAm bArVMS"
+>
+  <ol
+    className="sc-AxirZ eJDvGb"
+  >
+    <li
+      className="sc-AxgMl bcugQl"
+    >
+      <span
+        className="sc-AxhCb hKagXQ"
+      >
+        <a
+          href="https://www.sitkneelbend.com"
+        >
+          Jest: a tale of misery
+        </a>
+      </span>
+      <p
+        className="sc-AxhUy kKGMVQ"
+      >
+        (
+        https://www.sitkneelbend.com
+        )
+      </p>
+      <br />
+      <span
+        className="sc-AxheI kchDLz"
+      >
+        <a
+          className="sc-AxiKw dVyqFv"
+          href="/user?id=moopie"
+          onClick={[Function]}
+        >
+          by 
+          moopie
+        </a>
+         | 
+        2045-10-19
+      </span>
+    </li>
+  </ol>
+</div>
+`;

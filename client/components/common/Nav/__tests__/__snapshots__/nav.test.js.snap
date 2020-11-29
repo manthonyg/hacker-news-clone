@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="sc-AxheI eLlhWc"
+>
+  <button
+    className="sc-AxmLO ctbvAW"
+  >
+    💡
+  </button>
+  <li
+    className="sc-AxgMl WXvjg"
+  >
+    <h1
+      className="sc-AxjAm gxdtxQ"
+    >
+      HNC
+    </h1>
+  </li>
+  <li
+    className="sc-AxgMl WXvjg"
+  >
+    <a
+      className="sc-Axmtr jzWgds"
+      href="/"
+      onClick={[Function]}
+    >
+      <h5
+        className="sc-AxhUy gDpfhH"
+      >
+        top
+      </h5>
+    </a>
+  </li>
+  <li
+    className="sc-AxgMl WXvjg"
+  >
+    <a
+      className="sc-Axmtr jzWgds"
+      href="/best"
+      onClick={[Function]}
+    >
+      <h5
+        className="sc-AxhUy gDpfhH"
+      >
+        best
+      </h5>
+    </a>
+  </li>
+  <li
+    className="sc-AxgMl WXvjg"
+  >
+    <a
+      className="sc-Axmtr jzWgds"
+      href="/new"
+      onClick={[Function]}
+    >
+      <h5
+        className="sc-AxhUy gDpfhH"
+      >
+        new
+      </h5>
+    </a>
+  </li>
+</div>
+`;
