@@ -8,6 +8,17 @@ const baseStyle = css`
     if (props.theme.theme === "light") return "#202020";
     return "03DAC6#";
   }};
+  position: ${(props) => {
+    if (props.isSticky) return "sticky";
+    return "none";
+  }};
+  background-color: ${(props) => {
+    if (props.isSticky && props.theme.theme === "light") return "#c3c3c3";
+    else if (props.isSticky && props.theme.theme === "dark") return "#121212";
+    else return "none";
+  }};
+  top: 0;
+  z-index: 999;
   display: block;
   font-family: 'Poppins', sans-serif;
   font-weight: 600;
@@ -69,6 +80,7 @@ const Heading = ({
   h5,
   noMargin,
   underlined,
+  isSticky,
   right,
   center,
   ...props
@@ -77,6 +89,7 @@ const Heading = ({
     return (
       <HeadingTwo
         noMargin={noMargin}
+        isSticky={isSticky}
         right={right}
         center={center}
         underlined={underlined}
@@ -87,6 +100,7 @@ const Heading = ({
     return (
       <HeadingThree
         noMargin={noMargin}
+        isSticky={isSticky}
         right={right}
         center={center}
         underlined={underlined}
@@ -97,6 +111,7 @@ const Heading = ({
     return (
       <HeadingFour
         noMargin={noMargin}
+        isSticky={isSticky}
         right={right}
         center={center}
         underlined={underlined}
@@ -107,6 +122,7 @@ const Heading = ({
     return (
       <HeadingFive
         noMargin={noMargin}
+        isSticky={isSticky}
         right={right}
         center={center}
         underlined={underlined}
@@ -114,7 +130,13 @@ const Heading = ({
       />
     );
   return (
-    <HeadingOne noMargin={noMargin} right={right} center={center} {...props} />
+    <HeadingOne
+      noMargin={noMargin}
+      right={right}
+      center={center}
+      isSticky={isSticky}
+      {...props}
+    />
   );
 };
 

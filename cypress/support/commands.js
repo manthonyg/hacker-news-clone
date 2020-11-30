@@ -1,3 +1,13 @@
+import "@testing-library/cypress/add-commands";
+
+Cypress.Commands.add("checkCustomDataAttribute", (attribute, value) => {
+  const attributeWithoutBrackets = attribute.replace(/[[\]]/g, "");
+
+  cy.get(attribute)
+    .invoke("attr", attributeWithoutBrackets)
+    .should("contain", value);
+});
+
 // ***********************************************
 // This example commands.js shows you how to
 // create various custom commands and overwrite

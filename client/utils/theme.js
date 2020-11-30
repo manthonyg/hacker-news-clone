@@ -4,7 +4,7 @@ import { createGlobalStyle } from "styled-components";
 export const GlobalStyle = createGlobalStyle`
   body {
     background-color: ${(props) =>
-      props.theme.theme === "light" ? "#cccccc" : "#121212"};
+      props.theme.theme === "light" ? "#c3c3c3" : "#121212"};
       color: ${(props) =>
         props.theme.theme === "light" ? "#121212" : "#eeeeee"};
         font-family: 'Roboto', sans-serif;

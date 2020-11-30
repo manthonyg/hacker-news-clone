@@ -6,6 +6,12 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import Heading from "../common/Heading/Heading";
 import Header from "../common/Heading/Heading";
 import PropTypes from "prop-types";
+import {
+  POST_CATEGORY_TEXT,
+  POST_LOADER_MESSAGE,
+  POST_END_MESSAGE,
+} from "../../test_utils/testIds";
+
 function Posts(props) {
   const { type } = props;
   const [isLoading, setIsLoading] = useState(false);
@@ -27,15 +33,15 @@ function Posts(props) {
         .then((response) => setPostIds(response))
         .catch((error) => console.log(error));
     }
-    return () => (componentIsMounted.current = false);
-  }, [type]);
+    return () => (componentIsMounted.current = true);
+  }, [props.type]);
 
   const handleInfiniteScroll = () => {
     const currentPostLength = posts.length;
     fetchPosts(
       postIds.slice(
-        currentPostLength - 1,
-        currentPostLength + INFINITE_SCROLL_FETCH_AMOUNT
+        currentPostLength,
+        currentPostLength + INFINITE_SCROLL_FETCH_AMOUNT + 1
       )
     ).then((response) => setPosts(posts.concat(response)));
   };
@@ -44,26 +50,39 @@ function Posts(props) {
     <>
       {isLoading ? (
         <>
-          <Header h5>Loading {type}...</Header>
+          <Header data-testid={POST_LOADER_MESSAGE} h5>
+            loading {type}...
+          </Header>
           <Loader />
         </>
       ) : (
-        <InfiniteScroll
-          style={{ overflow: "auto" }}
-          dataLength={posts.length} //This is important field to render the next data
-          next={handleInfiniteScroll}
-          hasMore={posts?.length < postIds?.length}
-          scrollThreshold={0.95}
-          loader={
-            <>
-              <Header h5>Loading {type}...</Header>
-              <Loader />
-            </>
-          }
-          endMessage={<Heading>No more posts!</Heading>}
-        >
-          <PostList posts={posts} />
-        </InfiniteScroll>
+        <>
+          <Heading data-testid={POST_CATEGORY_TEXT} isSticky h5>
+            viewing {type} ({posts.length} of {postIds.length})
+          </Heading>
+          <InfiniteScroll
+            style={{ overflow: "auto" }}
+            dataLength={posts.length} //This is important field to render the next data
+            next={handleInfiniteScroll}
+            hasMore={posts?.length < postIds?.length}
+            scrollThreshold={0.95}
+            loader={
+              <>
+                <Header data-testid={POST_LOADER_MESSAGE} h5>
+                  loading {type}...
+                </Header>
+                <Loader />
+              </>
+            }
+            endMessage={
+              <Heading data-testid={POST_END_MESSAGE} h4>
+                no more posts
+              </Heading>
+            }
+          >
+            <PostList posts={posts} category={type} />
+          </InfiniteScroll>
+        </>
       )}
     </>
   );

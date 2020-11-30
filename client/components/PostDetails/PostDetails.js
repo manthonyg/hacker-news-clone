@@ -9,6 +9,7 @@ import PostSkeleton from "../Posts/PostSkeleton";
 import Post from "../Post/Post";
 import CommentList from "../CommentList/CommentList";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { StickyContainer, Sticky } from "react-sticky";
 
 function PostDetails() {
   const INFINITE_SCROLL_FETCH_AMOUNT = 10;
@@ -57,40 +58,38 @@ function PostDetails() {
   return (
     <>
       {isLoading ? (
-        <>
+        <Flex>
           <Heading h5>viewing:</Heading>
           <PostSkeleton numberOfSkeletons={1} />
           <Heading h5>comments: (...)</Heading>
           <PostSkeleton numberOfSkeletons={10} noEmoji />
-        </>
+        </Flex>
       ) : (
         <>
           <Heading h5>viewing:</Heading>
           {post && <Post post={post} />}
-          <Flex>
-            {comments && (
-              <Heading h5>
-                comments ({comments?.length} of {commentIds?.length}):
-              </Heading>
-            )}
+          {comments && (
+            <Heading h5 isSticky>
+              comments ({comments?.length} of {commentIds?.length}):
+            </Heading>
+          )}
 
-            <InfiniteScroll
-              style={{ overflow: "auto" }}
-              dataLength={comments?.length}
-              next={handleInfiniteScroll}
-              hasMore={comments?.length <= commentIds?.length - 1}
-              scrollThreshold={0.95}
-              loader={
-                <>
-                  <Heading h5>Loading...</Heading>
-                  <Loader />
-                </>
-              }
-              endMessage={<Heading>no more comments</Heading>}
-            >
-              <CommentList comments={comments} />
-            </InfiniteScroll>
-          </Flex>
+          <InfiniteScroll
+            style={{ overflow: "auto" }}
+            dataLength={comments?.length}
+            next={handleInfiniteScroll}
+            hasMore={comments?.length <= commentIds?.length - 1}
+            scrollThreshold={0.95}
+            loader={
+              <>
+                <Heading h5>Loading comments...</Heading>
+                <Loader />
+              </>
+            }
+            endMessage={<Heading>no more comments</Heading>}
+          >
+            <CommentList comments={comments} />
+          </InfiniteScroll>
         </>
       )}
     </>

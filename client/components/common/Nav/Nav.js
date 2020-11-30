@@ -3,6 +3,11 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Heading from "../Heading/Heading";
 import PropTypes from "prop-types";
+import {
+  NAV_LINK_BEST,
+  NAV_LINK_NEW,
+  NAV_LINK_TOP,
+} from "../../../test_utils/testIds";
 
 const NavItem = styled.li`
   display: inline-block;
@@ -47,17 +52,17 @@ function Nav({ onClick, theme }) {
           HNC
         </Heading>
       </NavItem>
-      <NavItem>
+      <NavItem data-testid={NAV_LINK_TOP}>
         <StyledLink to="/">
           <Heading h5>top</Heading>
         </StyledLink>
       </NavItem>
-      <NavItem>
+      <NavItem data-testid={NAV_LINK_BEST}>
         <StyledLink to="/best">
           <Heading h5>best</Heading>
         </StyledLink>
       </NavItem>
-      <NavItem>
+      <NavItem data-testid={NAV_LINK_NEW}>
         <StyledLink to="/new">
           <Heading h5>new</Heading>
         </StyledLink>

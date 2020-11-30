@@ -5,6 +5,7 @@ import { truncateString } from "../../utils/truncate";
 import moment from "moment";
 import { fadeInLeft, fadeInRight } from "../../utils/keyframes/fadeAnimations";
 import PropTypes from "prop-types";
+import { POST } from "../../test_utils/testIds";
 
 const PostCard = styled.div`
   display: flex;
@@ -133,11 +134,15 @@ const ListItemInfo = styled.span`
   }
 `;
 
-function Post({ post, animationOrder }) {
+function Post({ post, animationOrder, category }) {
   const { id, url, score, kids, by, title, time } = post;
 
   return (
-    <PostCard animationOrder={animationOrder}>
+    <PostCard
+      animationOrder={animationOrder}
+      data-testid={POST}
+      data-test-category={category}
+    >
       <List>
         <ListItem comments={kids && kids.length} link={url} score={score}>
           <ListTitle>
@@ -174,6 +179,7 @@ Post.propTypes = {
     by: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     time: PropTypes.number.isRequired,
+    category: PropTypes.string,
   }),
   animationOrder: PropTypes.number,
 };

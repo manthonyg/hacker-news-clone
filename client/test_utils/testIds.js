@@ -1,0 +1,10 @@
+export const LOCALPATH = "http://localhost:8080";
+export const NAV_LINK_TOP = "NAV_LINK_TOP";
+export const NAV_LINK_NEW = "NAV_LINK_NEW";
+export const NAV_LINK_BEST = "NAV_LINK_BEST";
+export const POST = "POST";
+export const POST_LOADER_MESSAGE = "POST_LOADER_MESSAGE";
+export const POST_END_MESSAGE = "POST_END_MESSAGE";
+export const DATA_TEST_CATEGORY = "[data-test-category]";
+export const DATA_TEST_LOADER = "[data-test-loader]";
+export const POST_CATEGORY_TEXT = "POST_CATEGORY_TEXT";
