@@ -86,7 +86,7 @@ function PostDetails() {
                 <Loader />
               </>
             }
-            endMessage={<Heading>no more comments</Heading>}
+            endMessage={<Heading h4>no more comments</Heading>}
           >
             <CommentList comments={comments} />
           </InfiniteScroll>

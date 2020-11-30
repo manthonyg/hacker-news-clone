@@ -12,11 +12,21 @@ import Grid from "./components/common/Grid/Grid";
 import GridItem from "./components/common/Grid/GridItem";
 
 function App() {
-  const [theme, setTheme] = useState({ theme: "light" });
+  const localStorageTheme = localStorage.getItem("theme");
+  const [theme, setTheme] = useState({ theme: localStorageTheme || "light" });
 
   const handleTheme = () => {
     setTheme({ theme: theme.theme === "light" ? "dark" : "light" });
+    setLocalStorage(theme.theme);
   };
+
+  const setLocalStorage = (theme) => {
+    if (theme === "light") {
+      return localStorage.setItem("theme", "dark");
+    }
+    return localStorage.setItem("theme", "light");
+  };
+
   return (
     <Grid cols="1% 98% auto">
       <Router>

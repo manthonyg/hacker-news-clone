@@ -69,7 +69,7 @@ const CommentCardContent = styled.p`
       if (props.theme.theme === "light") {
         return "linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1) 100%)";
       }
-      return "linear-gradient(to bottom, rgba(40, 40, 40, 0), rgba(40, 40, 40, 1) 10 0%)";
+      return "linear-gradient(to bottom, rgba(40, 40, 40, 0), rgba(40, 40, 40, 1) 100%)";
     }
   }}
 `;
