@@ -9,7 +9,7 @@ import PostSkeleton from "../Posts/PostSkeleton";
 import Post from "../Post/Post";
 import CommentList from "../CommentList/CommentList";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { StickyContainer, Sticky } from "react-sticky";
+import ScrollArrow from "../ScrollArrow/ScrollArrow";
 
 function PostDetails() {
   const INFINITE_SCROLL_FETCH_AMOUNT = 10;
@@ -90,6 +90,7 @@ function PostDetails() {
           >
             <CommentList comments={comments} />
           </InfiniteScroll>
+          <ScrollArrow />
         </>
       )}
     </>
