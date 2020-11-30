@@ -11,6 +11,7 @@ import {
   POST_LOADER_MESSAGE,
   POST_END_MESSAGE,
 } from "../../test_utils/testIds";
+import ScrollArrow from "../ScrollArrow/ScrollArrow";
 
 function Posts(props) {
   const { type } = props;
@@ -82,6 +83,7 @@ function Posts(props) {
           >
             <PostList posts={posts} category={type} />
           </InfiniteScroll>
+          <ScrollArrow />
         </>
       )}
     </>

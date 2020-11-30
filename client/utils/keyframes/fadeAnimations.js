@@ -12,6 +12,17 @@ export const fadeInLeft = keyframes`
   }
 }`;
 
+export const fadeInLeftNoOpacity = keyframes` 
+  0% {
+    -webkit-transform: translateX(-50px);
+            transform: translateX(-50px);
+  }
+  100% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+}`;
+
 export const fadeInRight = keyframes`
   0% {
     -webkit-transform: translateX(50px);
