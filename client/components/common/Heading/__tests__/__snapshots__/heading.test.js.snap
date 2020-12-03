@@ -2,7 +2,7 @@
 
 exports[`renders correctly 1`] = `
 <h5
-  className="sc-AxhUy gDpfhH"
+  className="sc-AxhUy iTChLH"
 >
   Header
 </h5>

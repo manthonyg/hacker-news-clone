@@ -3,6 +3,7 @@
 exports[`renders correctly with all props 1`] = `
 <div
   className="sc-AxjAm bArVMS"
+  data-testid="POST"
 >
   <ol
     className="sc-AxirZ eJDvGb"

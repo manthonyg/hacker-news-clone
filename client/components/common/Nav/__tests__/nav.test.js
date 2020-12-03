@@ -8,7 +8,7 @@ it("renders correctly", () => {
   const tree = renderer
     .create(
       <RenderWithRouter>
-        <Nav theme={testTheme}></Nav>
+        <Nav onClick={() => undefined} theme={testTheme}></Nav>
       </RenderWithRouter>
     )
     .toJSON();

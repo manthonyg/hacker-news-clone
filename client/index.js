@@ -5,9 +5,9 @@ import GoogleFontLoader from "react-google-font-loader";
 import { ThemeProvider } from "styled-components";
 import { GlobalStyle as Theme } from "./utils/theme";
 import Nav from "./components/common/Nav/Nav";
-import Posts from "./components/Posts/Posts";
-import UserInfo from "./components/UserInfo/UserInfo";
-import PostDetails from "./components/PostDetails/PostDetails";
+import Posts from "./pages/Posts/Posts";
+import UserInfo from "./pages/UserInfo/UserInfo";
+import Comments from "./pages/Comments/Comments";
 import Grid from "./components/common/Grid/Grid";
 import GridItem from "./components/common/Grid/GridItem";
 
@@ -56,7 +56,7 @@ function App() {
             <Switch>
               <Route exact path="/" render={() => <Posts type="top" />} />
               <Route path="/user" render={() => <UserInfo />} />
-              <Route path="/post" render={() => <PostDetails />} />
+              <Route path="/post" render={() => <Comments />} />
               <Route path="/best" render={() => <Posts type="best" />} />
               <Route path="/new" render={() => <Posts type="new" />} />
               <Route render={() => <h1>404</h1>} />

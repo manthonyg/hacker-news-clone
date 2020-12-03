@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { FaArrowCircleUp } from "react-icons/fa";
 import styled from "styled-components";
 import { fadeInLeftNoOpacity } from "../../utils/keyframes/fadeAnimations";
@@ -19,11 +19,12 @@ const StyledScrollArrow = styled(FaArrowCircleUp)`
 
 const ScrollArrow = () => {
   const [showScroll, setShowScroll] = useState(false);
+  const componentIsMounted = useRef(true);
 
   const checkScrollTop = () => {
-    if (!showScroll && window.pageYOffset > 400) {
+    if (!showScroll && componentIsMounted.current && window.pageYOffset > 400) {
       setShowScroll(true);
-    } else if (showScroll && window.pageYOffset <= 400) {
+    } else {
       setShowScroll(false);
     }
   };
@@ -31,9 +32,12 @@ const ScrollArrow = () => {
   const scrollTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
-
-  window.addEventListener("scroll", checkScrollTop);
-
+  useEffect(() => {
+    if ((componentIsMounted.current = true)) {
+      window.addEventListener("scroll", checkScrollTop);
+    }
+    return () => (componentIsMounted.current = false);
+  }, []);
   return (
     <StyledScrollArrow
       onClick={scrollTop}

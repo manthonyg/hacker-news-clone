@@ -11,6 +11,11 @@
     "cypress": "cypress open",
     "test": "jest"
   },
+  "jest": {
+    "modulePathIgnorePatterns": [
+      "cypress"
+    ]
+  },
   "babel": {
     "presets": [
       "@babel/preset-env",

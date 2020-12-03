@@ -6,6 +6,7 @@ exports[`renders correctly 1`] = `
 >
   <button
     className="sc-AxmLO ctbvAW"
+    onClick={[Function]}
   >
     💡
   </button>
@@ -13,13 +14,14 @@ exports[`renders correctly 1`] = `
     className="sc-AxgMl WXvjg"
   >
     <h1
-      className="sc-AxjAm gxdtxQ"
+      className="sc-AxjAm gijxXQ"
     >
       HNC
     </h1>
   </li>
   <li
     className="sc-AxgMl WXvjg"
+    data-testid="NAV_LINK_TOP"
   >
     <a
       className="sc-Axmtr jzWgds"
@@ -27,7 +29,7 @@ exports[`renders correctly 1`] = `
       onClick={[Function]}
     >
       <h5
-        className="sc-AxhUy gDpfhH"
+        className="sc-AxhUy iTChLH"
       >
         top
       </h5>
@@ -35,6 +37,7 @@ exports[`renders correctly 1`] = `
   </li>
   <li
     className="sc-AxgMl WXvjg"
+    data-testid="NAV_LINK_BEST"
   >
     <a
       className="sc-Axmtr jzWgds"
@@ -42,7 +45,7 @@ exports[`renders correctly 1`] = `
       onClick={[Function]}
     >
       <h5
-        className="sc-AxhUy gDpfhH"
+        className="sc-AxhUy iTChLH"
       >
         best
       </h5>
@@ -50,6 +53,7 @@ exports[`renders correctly 1`] = `
   </li>
   <li
     className="sc-AxgMl WXvjg"
+    data-testid="NAV_LINK_NEW"
   >
     <a
       className="sc-Axmtr jzWgds"
@@ -57,7 +61,7 @@ exports[`renders correctly 1`] = `
       onClick={[Function]}
     >
       <h5
-        className="sc-AxhUy gDpfhH"
+        className="sc-AxhUy iTChLH"
       >
         new
       </h5>
