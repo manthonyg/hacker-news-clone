@@ -62,7 +62,7 @@ function Posts(props) {
           setIsFetching(false);
           checkIfHasPosts();
         });
-      }, 1000);
+      }, 200);
     }
   };
 
@@ -84,12 +84,18 @@ function Posts(props) {
 
           {isFetching && hasPosts && (
             <>
-              <Heading h5>Loading posts...</Heading>
+              <Heading h5 data-testid={POST_LOADER_MESSAGE}>
+                loading {type}...
+              </Heading>
               <Loader />
             </>
           )}
 
-          {!hasPosts && <Heading h4>no more posts</Heading>}
+          {!hasPosts && (
+            <Heading h4 data-testid={POST_END_MESSAGE}>
+              no more posts
+            </Heading>
+          )}
           <ScrollArrow />
         </>
       )}

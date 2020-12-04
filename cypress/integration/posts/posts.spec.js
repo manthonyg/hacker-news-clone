@@ -105,7 +105,7 @@ describe("posts", () => {
   it("displays 'no more posts' when reaching bottom of page if there is no more content", () => {
     cy.visit(`${LOCALPATH}/best`);
     for (let i = 0; i < 40; i++) {
-      cy.scrollTo("bottom", { duration: 200 });
+      cy.scrollTo("bottom", { duration: 500 });
     }
     cy.findByTestId(POST_END_MESSAGE).should("have.text", `no more posts`);
   });

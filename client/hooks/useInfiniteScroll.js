@@ -15,11 +15,12 @@ const useInfiniteScroll = (callback) => {
 
   function handleScroll() {
     if (
-      window.innerHeight + document.documentElement.scrollTop !==
-        document.documentElement.offsetHeight ||
+      window.innerHeight + document.documentElement.scrollTop <
+        document.body.scrollHeight - 200 ||
       isFetching
-    )
+    ) {
       return;
+    }
     setIsFetching(true);
   }
 

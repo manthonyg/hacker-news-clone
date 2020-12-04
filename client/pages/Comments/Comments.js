@@ -67,7 +67,7 @@ function Comments() {
           setIsFetching(false);
           checkIfHasComments();
         });
-      }, 1000);
+      }, 200);
     }
   };
 
